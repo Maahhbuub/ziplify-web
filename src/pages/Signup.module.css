@@ -1,4 +1,4 @@
-.login {
+.signup {
     min-height: 100dvh;
     display: flex;
     justify-content: center;
@@ -57,10 +57,6 @@
 .forget {
     text-align: end;
     margin-bottom: 0.5rem;
-}
-
-.forget a {
-    color: var(--subtext);
 }
 
 .submitBtn {

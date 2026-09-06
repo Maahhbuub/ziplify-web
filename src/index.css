@@ -5,7 +5,7 @@
 
   /* font-family: "Inter", sans-serif; */
   /* font-family: "Hanken Grotesk", sans-serif; */
-  font-family: "Poppins", sans-serif;
+  font-family: "Lora", sans-serif;
 }
 
 :root {
@@ -19,6 +19,7 @@
 
   --text: #1a1c1d;
   --subtext: #5d5e61;
+  --border: #dee2e6;
 }
 
 .box-grid {
@@ -52,8 +53,15 @@
 
 /* ── Page entrance animation ────────────────────────────────────────────── */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .fade-up {
@@ -65,7 +73,7 @@
   position: relative;
   cursor: not-allowed;
   pointer-events: none;
-  color: transparent !important; 
+  color: transparent !important;
   opacity: 0.6 !important;
   /* filter: saturate(0.6) !important; */
 }
@@ -85,5 +93,7 @@
 }
 
 @keyframes btn-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }

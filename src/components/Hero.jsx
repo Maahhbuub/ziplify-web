@@ -101,8 +101,8 @@ function Hero() {
                 )}
 
                 <p className={styles.footer}>Fast, simple, and free URL shortening.</p>
-                <p className={styles.footer}>
-                    <Link to='/auth/login'>Explore</Link>
+                <p className={styles.explore}>
+                    <Link to='/auth/login'>Explore More</Link>
                 </p>
             </div>
 

@@ -1,18 +1,18 @@
 import React from 'react'
-import styles from './Login.module.css';
+import styles from './Signup.module.css';
 import { Link } from 'react-router-dom';
 
-function Login() {
+function Signup() {
 
     return (
-        <div className={`${styles.login} box-grid`}>
+        <div className={`${styles.signup} box-grid`}>
             <div className={`${styles.wrapper}`}>
                 <div className={`${styles.header}`}>
-                    <h2>Login</h2>
-                    <p>Login to your ziplify account</p>
+                    <h2>Signup</h2>
+                    <p>Signup to your ziplify account</p>
                 </div>
 
-                <div className={`${styles.loginField}`}>
+                <div className={`${styles.signupField}`}>
                     <form action="#">
                         <div className={`${styles.field}`}>
                             <label htmlFor="username">Username</label>
@@ -24,16 +24,17 @@ function Login() {
                             <input type="password" id='password' placeholder='Your password' />
                         </div>
 
-                        <div className={`${styles.forget}`}>
-                            <Link to='/#'>Forget password?</Link>
+                        <div className={`${styles.field}`}>
+                            <label htmlFor="ConfirmPassword">Confirm Password</label>
+                            <input type="password" id='ConfirmPassword' placeholder='Confirm Your password' />
                         </div>
 
-                        <button type='submit' className={`${styles.submitBtn}`}>Login</button>
+                        <button type='submit' className={`${styles.submitBtn}`}>Signup</button>
                     </form>
                 </div>
 
                 <div className={`${styles.newAcc}`}>
-                    Don't have account? <Link to='/auth/signup'>SignUP</Link>
+                    Already have an account? <Link to='/auth/login'>Login</Link>
                 </div>
             </div>
 
@@ -41,4 +42,4 @@ function Login() {
     )
 }
 
-export default Login;
+export default Signup;

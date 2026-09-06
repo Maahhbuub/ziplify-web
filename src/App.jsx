@@ -9,6 +9,7 @@ import DashboardLayout from './layouts/DashboardLayout';
 // pages
 import Home from './pages/Home'
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 
 // components
@@ -24,6 +25,7 @@ function App() {
 
       <Route element={<AuthLayout />}>
         <Route path="/auth/login" element={<Login />} />
+        <Route path="/auth/signup" element={<Signup />} />
       </Route>
 
       <Route element={<DashboardLayout />}>

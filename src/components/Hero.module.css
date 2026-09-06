@@ -220,8 +220,15 @@
     bottom: 2%;
     right: 1%;
     color: var(--subtext);
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     font-family: 'Special Elite';
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.explore a {
+    color: var(--primary);
+    font-size: 0.7rem;
     text-align: center;
     margin-top: 0.5rem;
 }
@@ -230,5 +237,6 @@
     .owner {
         left: 0;
         right: 0;
+        font-size: 0.5rem;
     }
 }
