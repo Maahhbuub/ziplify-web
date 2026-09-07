@@ -41,7 +41,7 @@ function Forget() {
                     <form action="#" onSubmit={handleSubmit}>
                         <div className={`${styles.field}`}>
                             <label htmlFor="email">Email</label>
-                            <input onChange={handleData} value={email} type="email" name='email' id='email' placeholder='Your email address' autoComplete='username' />
+                            <input onChange={handleData} value={email} type="email" name='email' id='email' placeholder='Your email address' autoComplete='email' />
                         </div>
 
                         <button type='submit' className={`${styles.submitBtn}`}>Send</button>
