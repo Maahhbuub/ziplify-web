@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react'
 import styles from './Signup.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { Eye, EyeOff } from 'lucide-react';
 
 function Signup() {
+    const navigate = useNavigate();
 
     const [formData, setFormdata] = useState({
         username: "",
@@ -32,15 +33,17 @@ function Signup() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        if (!formData.username) return toast.error("Username can't be empty", { position: "top-center" });
-        if (!formData.email) return toast.error("Email can't be empty", { position: "top-center" });
-        if (!formData.password) return toast.error("Password can't be empty", { position: "top-center" });
-        if (!formData.confirmPassword) return toast.error("Please confirm your password", { position: "top-center" });
-        if (formData.password !== formData.confirmPassword) return toast.error("Passwords don't match", { position: "top-center" });
+        if (!formData.username) return toast.error("Username can't be empty");
+        if (!formData.email) return toast.error("Email can't be empty");
+        if (!formData.password) return toast.error("Password can't be empty");
+        if (!formData.confirmPassword) return toast.error("Please confirm your password");
+        if (formData.password !== formData.confirmPassword) return toast.error("Passwords don't match");
 
         console.log(formData);
-        toast.success("Verify your email", { position: "top-center" })
+        toast.success("Verify your email")
         setFormdata({ username: "", email: "", password: "", confirmPassword: "" });
+
+        navigate("/auth/login");
     }
 
     return (

@@ -30,7 +30,7 @@ function Login() {
         if (!formData.password) return toast.error("Password can't be empty", { position: "top-center" });
 
         console.log(formData);
-        toast.success("Login Successful", { position: "top-center" })
+        toast.success("Login Successful")
         setFormdata({ username: "", password: "" });
     }
 
@@ -60,7 +60,7 @@ function Login() {
                         </div>
 
                         <div className={`${styles.forget}`}>
-                            <Link to='/#'>Forget password?</Link>
+                            <Link to='/auth/forget'>Forget password?</Link>
                         </div>
 
                         <button type='submit' className={`${styles.submitBtn}`}>Login</button>
@@ -68,7 +68,7 @@ function Login() {
                 </div>
 
                 <div className={`${styles.newAcc}`}>
-                    Don't have account? <Link to='/auth/signup'>SignUP</Link>
+                    Don't have account? <Link to='/auth/signup'>Signup</Link>
                 </div>
             </div>
 

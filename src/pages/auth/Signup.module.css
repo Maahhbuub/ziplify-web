@@ -1,0 +1,117 @@
+.signup {
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    width: 25rem;
+    padding: 1.5rem;
+}
+
+.header {
+    margin-bottom: 0.8rem;
+    text-align: center;
+}
+
+.header h2 {
+    color: var(--text);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.header p {
+    color: var(--subtext);
+    font-size: 0.9rem;
+}
+
+.field {
+    margin-bottom: 0.5rem;
+    width: 100%;
+    background: transparent;
+}
+
+.field label {
+    display: inline-block;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+}
+
+.field input {
+    font-size: 1rem;
+    width: 100%;
+    padding: 0.5rem 0.6rem;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    background: #fff;
+    outline: none;
+    transition: all 0.4s ease;
+}
+
+@media (max-width: 600px) {
+    .field input {
+        padding: 0.6rem;
+    }
+}
+
+.field input:focus {
+    border-color: #735cdd80;
+    outline: 0;
+    box-shadow: 0 0 0 0.15rem #735cdd80;
+}
+
+.passwordWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.passwordWrapper input {
+    padding-right: 2.2rem;
+}
+
+.eyeIcon {
+    position: absolute;
+    right: 0.6rem;
+    cursor: pointer;
+    color: var(--subtext);
+    display: flex;
+    align-items: center;
+}
+
+.forget {
+    text-align: end;
+    margin-bottom: 0.5rem;
+}
+
+.submitBtn {
+    font-size: 1rem;
+    width: 100%;
+    border: none;
+    color: white;
+    background: var(--primary);
+    padding: 0.5rem;
+    margin-bottom: 0.4rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submitBtn:hover {
+    background-color: var(--hover);
+}
+
+@media (max-width: 600px) {
+    .submitBtn {
+        padding: 0.6rem 0;
+    }
+}
+
+.newAcc {
+    color: var(--text);
+    text-align: center;
+}
+
+.newAcc a {
+    color: var(--primary);
+}

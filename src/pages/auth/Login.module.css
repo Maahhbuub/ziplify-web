@@ -1,4 +1,4 @@
-.signup {
+.login {
     min-height: 100dvh;
     display: flex;
     justify-content: center;
@@ -8,12 +8,6 @@
 .wrapper {
     width: 25rem;
     padding: 1.5rem;
-}
-
-@media (max-width: 600px) {
-    .wrapper {
-        width: 23rem;
-    }
 }
 
 .header {
@@ -41,7 +35,7 @@
 .field label {
     display: inline-block;
     color: var(--text);
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.3rem;
 }
 
 .field input {
@@ -91,20 +85,20 @@
     margin-bottom: 0.5rem;
 }
 
+.forget a {
+    color: var(--subtext);
+}
+
 .submitBtn {
     font-size: 1rem;
     width: 100%;
     border: none;
     color: white;
     background: var(--primary);
-    padding: 0.5rem;
-    margin-bottom: 0.4rem;
+    padding: 0.5rem 0;
     border-radius: 5px;
+    margin-bottom: 0.4rem;
     cursor: pointer;
-}
-
-.submitBtn:hover {
-    background-color: var(--hover);
 }
 
 @media (max-width: 600px) {
@@ -113,11 +107,15 @@
     }
 }
 
+.submitBtn:hover {
+    background-color: var(--hover);
+}
+
 .newAcc {
     color: var(--text);
     text-align: center;
 }
 
 .newAcc a {
-    color: var(--subtext);
+    color: var(--primary);
 }

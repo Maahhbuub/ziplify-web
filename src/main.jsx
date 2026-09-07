@@ -9,6 +9,8 @@ import { Toaster } from 'react-hot-toast';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <App />
-    <Toaster />
+    <Toaster
+      toastOptions={{ success: { iconTheme: { primary: "#735cdd", secondary: "#fff", }, }, }}
+    />
   </BrowserRouter>
 );

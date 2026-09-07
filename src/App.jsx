@@ -8,8 +8,9 @@ import DashboardLayout from './layouts/DashboardLayout';
 
 // pages
 import Home from './pages/Home'
-import Login from './pages/Login';
-import Signup from './pages/Signup';
+import Login from './pages/auth/Login';
+import Signup from './pages/auth/Signup';
+import Forget from './pages/auth/Forget';
 import Dashboard from './pages/Dashboard';
 
 // components
@@ -26,6 +27,7 @@ function App() {
       <Route element={<AuthLayout />}>
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/signup" element={<Signup />} />
+        <Route path="/auth/forget" element={<Forget />} />
       </Route>
 
       <Route element={<DashboardLayout />}>
