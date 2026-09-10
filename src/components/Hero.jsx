@@ -34,9 +34,7 @@ function Hero() {
         event.preventDefault();
 
         if (!url) {
-            toast.error("Link can't be empty!", {
-                position: "top-center",
-            });
+            toast.error("Link can't be empty!");
             return;
         }
 
@@ -46,18 +44,11 @@ function Hero() {
             let shortUrl = window.location.origin + "/" + res.data.code
             setShort(shortUrl);
 
-            toast.success(res.data.message, {
-                position: "top-center",
-                iconTheme: {
-                    primary: "#735cdd",
-                },
-            });
+            toast.success(res.data.message);
         } catch (err) {
             console.error(err.response?.data || err.message);
             const message = err.response?.data?.message || err.response?.data || err.message;
-            toast.error(message, {
-                position: "top-center",
-            });
+            toast.error(message);
         } finally {
             setLoading(false);
             setUrl("");
