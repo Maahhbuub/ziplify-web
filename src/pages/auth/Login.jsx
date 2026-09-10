@@ -1,16 +1,21 @@
 import React, { useState, useRef } from 'react'
 import styles from './Login.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { Eye, EyeOff } from 'lucide-react';
+import { useAuth } from '../../hooks/UseAuth';
 
 function Login() {
+    const navigate = useNavigate();
+    const { login } = useAuth();
+
     const [formData, setFormdata] = useState({
-        username: "",
+        email: "",
         password: ""
     });
 
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
     const passwordRef = useRef(null);
 
     const togglePassword = () => setShowPassword(p => !p);
@@ -26,12 +31,20 @@ function Login() {
     let handleSubmit = async (event) => {
         event.preventDefault();
 
-        if (!formData.username) return toast.error("Username can't be empty", { position: "top-center" });
-        if (!formData.password) return toast.error("Password can't be empty", { position: "top-center" });
+        if (!formData.email) return toast.error("Email can't be empty");
+        if (!formData.password) return toast.error("Password can't be empty");
 
-        console.log(formData);
-        toast.success("Login Successful")
-        setFormdata({ username: "", password: "" });
+        setLoading(true);
+        try {
+            await login(formData);
+            toast.success("Login Successful");
+            setFormdata({ email: "", password: "" });
+            navigate('/dashboard');
+        } catch (error) {
+            toast.error(error.response?.data?.message || "Login failed");
+        } finally {
+            setLoading(false);
+        }
     }
 
     return (
@@ -45,8 +58,8 @@ function Login() {
                 <div className={`${styles.loginField}`}>
                     <form action="#" onSubmit={handleSubmit}>
                         <div className={`${styles.field}`}>
-                            <label htmlFor="username">Username</label>
-                            <input onChange={handleData} value={formData.username} type="text" name='username' id='username' placeholder='Your username' autoComplete='username' />
+                            <label htmlFor="email">Email</label>
+                            <input onChange={handleData} value={formData.email} type="email" name='email' id='email' placeholder='Your email' autoComplete='email' />
                         </div>
 
                         <div className={`${styles.field}`}>
@@ -63,7 +76,7 @@ function Login() {
                             <Link to='/auth/forget'>Forget password?</Link>
                         </div>
 
-                        <button type='submit' className={`${styles.submitBtn}`}>Login</button>
+                        <button type='submit' className={`${styles.submitBtn} ${loading ? 'btn-loading' : ''}`}>Login</button>
                     </form>
                 </div>
 

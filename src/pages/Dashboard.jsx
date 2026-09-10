@@ -1,12 +1,28 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../hooks/UseAuth';
 
 function Dashboard() {
+    const { user, logout } = useAuth();
+    const navigate = useNavigate();
+
+    const handleLogout = async () => {
+        try {
+            await logout();
+            navigate("/auth/login");
+        } catch (error) {
+            console.log(error.response?.data?.message || "Logout failed");
+        }
+    };
+
     return (
         <>
-            <div>Dashboard</div>
-            <Link to='/auth/login'>Login</Link> {" "}
-            <Link to='/'>Home</Link>
+            <h1>Hello {user.name}! </h1>
+            <h2>welcome to Ziplify</h2>
+            <p>We are currently working on it! see you soon</p>
+
+            <br />
+            {user ? <button onClick={handleLogout}>Logout</button> : ""}
         </>
     )
 }

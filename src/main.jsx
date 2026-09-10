@@ -4,11 +4,14 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx'
 import './index.css'
 import { Toaster } from 'react-hot-toast';
+import { AuthProvider } from './context/AuthContext.jsx';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <App />
+    <AuthProvider>
+      <App />
+    </AuthProvider>
     <Toaster
       toastOptions={{ success: { iconTheme: { primary: "#735cdd", secondary: "#fff", }, }, }}
     />

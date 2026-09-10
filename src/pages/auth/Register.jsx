@@ -3,12 +3,14 @@ import styles from './Signup.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { Eye, EyeOff } from 'lucide-react';
+import { useAuth } from '../../hooks/UseAuth';
 
 function Signup() {
     const navigate = useNavigate();
+    const { register } = useAuth();
 
     const [formData, setFormdata] = useState({
-        username: "",
+        name: "",
         email: "",
         password: "",
         confirmPassword: ""
@@ -16,6 +18,7 @@ function Signup() {
 
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
+    const [loading, setLoading] = useState(false);
     const passwordRef = useRef(null);
     const confirmRef = useRef(null);
 
@@ -33,17 +36,23 @@ function Signup() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        if (!formData.username) return toast.error("Username can't be empty");
+        if (!formData.name) return toast.error("Name can't be empty");
         if (!formData.email) return toast.error("Email can't be empty");
         if (!formData.password) return toast.error("Password can't be empty");
         if (!formData.confirmPassword) return toast.error("Please confirm your password");
         if (formData.password !== formData.confirmPassword) return toast.error("Passwords don't match");
 
-        console.log(formData);
-        toast.success("Verify your email")
-        setFormdata({ username: "", email: "", password: "", confirmPassword: "" });
-
-        navigate("/auth/login");
+        setLoading(true);
+        try {
+            await register(formData);
+            toast.success("Welcome to ziplify");
+            setFormdata({ name: "", email: "", password: "", confirmPassword: "" });
+            navigate("/dashboard");
+        } catch (error) {
+            toast.error(error.response?.data?.message || "Signup failed");
+        } finally {
+            setLoading(false);
+        }
     }
 
     return (
@@ -57,8 +66,8 @@ function Signup() {
                 <div className={`${styles.signupField}`}>
                     <form action="#" onSubmit={handleSubmit}>
                         <div className={`${styles.field}`}>
-                            <label htmlFor="username">Username</label>
-                            <input onChange={handleData} value={formData.username} type="text" name='username' id='username' placeholder='Your username' autoComplete='username' />
+                            <label htmlFor="name">Name</label>
+                            <input onChange={handleData} value={formData.name} type="text" name='name' id='name' placeholder='Your name' autoComplete='name' />
                         </div>
 
                         <div className={`${styles.field}`}>
@@ -86,7 +95,7 @@ function Signup() {
                             </div>
                         </div>
 
-                        <button type='submit' className={`${styles.submitBtn}`}>Signup</button>
+                        <button type='submit' className={`${styles.submitBtn} ${loading ? 'btn-loading' : ''}`}>Signup</button>
                     </form>
                 </div>
 
