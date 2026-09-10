@@ -8,8 +8,8 @@ function Dashboard() {
 
     const handleLogout = async () => {
         try {
+            navigate("/");
             await logout();
-            navigate("/auth/login");
         } catch (error) {
             console.log(error.response?.data?.message || "Logout failed");
         }

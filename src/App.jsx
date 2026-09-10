@@ -16,6 +16,7 @@ import Dashboard from './pages/Dashboard';
 // components
 import NotFound from './components/NotFound'
 import PrivateRoute from './components/PrivateRoute';
+import GuestRoute from './components/GuestRoute';
 
 function App() {
 
@@ -26,17 +27,13 @@ function App() {
       </Route>
 
       <Route element={<AuthLayout />}>
-        <Route path="/auth/login" element={<Login />} />
-        <Route path="/auth/signup" element={<Signup />} />
-        <Route path="/auth/forget" element={<Forget />} />
+        <Route path="/auth/login" element={<GuestRoute> <Login /> </GuestRoute>} />
+        <Route path="/auth/signup" element={<GuestRoute> <Signup /> </GuestRoute>} />
+        <Route path="/auth/forget" element={<GuestRoute> <Forget /> </GuestRoute>} />
       </Route>
 
       <Route element={<DashboardLayout />}>
-        <Route path="/dashboard" element={
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
-        } />
+        <Route path="/dashboard" element={<PrivateRoute> <Dashboard /> </PrivateRoute>} />
       </Route>
 
       <Route path="/not-found" element={<NotFound />} />
