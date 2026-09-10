@@ -15,8 +15,8 @@ import Dashboard from './pages/Dashboard';
 
 // components
 import NotFound from './components/NotFound'
-import PrivateRoute from './components/PrivateRoute';
-import GuestRoute from './components/GuestRoute';
+import GuestRoute from './routes/GuestRoute'
+import PrivateRoute from './routes/PrivateRoute'
 
 function App() {
 
