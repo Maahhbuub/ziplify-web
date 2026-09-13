@@ -15,6 +15,7 @@ import Dashboard from './pages/Dashboard';
 
 // components
 import NotFound from './components/NotFound'
+import LinkExpired from './components/LinkExpired'
 import GuestRoute from './routes/GuestRoute'
 import PrivateRoute from './routes/PrivateRoute'
 
@@ -37,6 +38,7 @@ function App() {
       </Route>
 
       <Route path="/not-found" element={<NotFound />} />
+      <Route path="/link-expired" element={<LinkExpired />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   )

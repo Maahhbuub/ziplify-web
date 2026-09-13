@@ -31,7 +31,7 @@ function NotFound() {
 
                 {/* Footer note */}
                 <p className={styles.hint}>
-                    Try shortening a valid URL on the <Link to="/" className={styles.hintLink}>home page</Link>.
+                    Try shortening a valid URL on the <Link to="/" className={styles.hintLink}>Home</Link>.
                 </p>
             </div>
         </div>
