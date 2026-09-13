@@ -7,7 +7,15 @@
 
 .wrapper {
     width: 25rem;
-    padding: 1.5rem;
+    padding: 2.5rem 1.5rem;
+    background: #fff;
+    border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+    .wrapper {
+        width: 22rem;
+    }
 }
 
 .header {

@@ -1,5 +1,5 @@
 import styles from "./Hero.module.css"
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link2, Copy, Check } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -15,6 +15,7 @@ function Hero() {
     const [short, setShort] = useState("");
     const [copied, setCopied] = useState(false);
     const [loading, setLoading] = useState(false);
+    const inpFocus = useRef(null);
 
     const handleCopy = async () => {
         try {
@@ -26,6 +27,10 @@ function Hero() {
         }
     }
 
+    useEffect(() => {
+        inpFocus.current?.focus();
+    }, []);
+
     let handleUrl = (event) => {
         setUrl(event.target.value);
     }
@@ -33,14 +38,15 @@ function Hero() {
     let handleSubmit = async (event) => {
         event.preventDefault();
 
-        if (!url) {
+        const trimmed = url.trim();
+        if (!trimmed) {
             toast.error("Link can't be empty!");
             return;
         }
 
         setLoading(true);
         try {
-            const res = await api.post('/', { longUrl: url });
+            const res = await api.post('/', { longUrl: trimmed });
             let shortUrl = window.location.origin + "/" + res.data.code
             setShort(shortUrl);
 
@@ -69,7 +75,7 @@ function Hero() {
                     <form action="#" onSubmit={handleSubmit}>
                         <div className={styles.URLInput}>
                             <Link2 />
-                            <input value={url} onChange={handleUrl} type="text" id="url" placeholder="Paste your URL here..." />
+                            <input ref={inpFocus} value={url} onChange={handleUrl} type="text" id="url" placeholder="Paste your URL here..." />
                         </div>
                         <button type="submit" disabled={loading} className={loading ? "btn-loading" : ""}>Shorten Now</button>
                     </form>
@@ -77,7 +83,7 @@ function Hero() {
 
                 {short && (
                     <div className={styles.resultRow}>
-                        <span className={styles.resultLabel}>Your short link:</span>
+                        <span className={styles.resultLabel}>Short link:</span>
                         <a href={short} target="_blank" rel="noopener noreferrer" className={styles.resultLink}>
                             {short}
                         </a>
