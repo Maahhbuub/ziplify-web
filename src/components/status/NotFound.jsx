@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./NotFound.module.css";
-import { useParticles } from "../hooks/useParticles";
+import { useParticles } from "../../hooks/useParticles";
 
 function NotFound() {
     const canvasRef = useParticles();

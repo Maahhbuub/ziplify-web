@@ -1,8 +1,8 @@
 // src/pages/VerifyEmail.jsx
 import { useEffect, useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import api from '../api/api';
-import { useParticles } from '../hooks/useParticles';
+import api from '../../api/api';
+import { useParticles } from '../../hooks/useParticles';
 import { ShieldCheck, ShieldAlert, Loader } from 'lucide-react';
 import styles from './VerifyEmail.module.css';
 

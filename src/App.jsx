@@ -14,11 +14,11 @@ import Forget from './pages/auth/Forget';
 import Dashboard from './pages/Dashboard';
 
 // components
-import NotFound from './components/NotFound'
-import LinkExpired from './components/LinkExpired'
+import NotFound from './components/status/NotFound'
+import LinkExpired from './components/status/LinkExpired'
 import GuestRoute from './routes/GuestRoute'
 import PrivateRoute from './routes/PrivateRoute'
-import VerifyEmail from './components/VerifyEmail';
+import VerifyEmail from './components/status/VerifyEmail';
 
 function App() {
 

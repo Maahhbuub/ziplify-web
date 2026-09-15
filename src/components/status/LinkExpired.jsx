@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./LinkExpired.module.css";
-import { useParticles } from "../hooks/useParticles";
+import { useParticles } from "../../hooks/useParticles";
 import { Link2Off } from "lucide-react";
 
 function LinkExpired() {

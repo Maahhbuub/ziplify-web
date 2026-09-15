@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
-import api from "../api/api";
-import { useParticles } from "../hooks/useParticles";
+import api from "../../api/api";
+import { useParticles } from "../../hooks/useParticles";
 import toast from 'react-hot-toast';
 
 function Hero() {
