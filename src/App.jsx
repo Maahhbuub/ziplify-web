@@ -18,6 +18,7 @@ import NotFound from './components/NotFound'
 import LinkExpired from './components/LinkExpired'
 import GuestRoute from './routes/GuestRoute'
 import PrivateRoute from './routes/PrivateRoute'
+import VerifyEmail from './components/VerifyEmail';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="/auth/login" element={<GuestRoute> <Login /> </GuestRoute>} />
         <Route path="/auth/signup" element={<GuestRoute> <Signup /> </GuestRoute>} />
         <Route path="/auth/forget" element={<GuestRoute> <Forget /> </GuestRoute>} />
+        <Route path='/auth/verify-email' element={<VerifyEmail />} ></Route>
       </Route>
 
       <Route element={<DashboardLayout />}>

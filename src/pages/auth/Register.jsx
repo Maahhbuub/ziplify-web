@@ -45,7 +45,7 @@ function Signup() {
         setLoading(true);
         try {
             await register(formData);
-            toast.success("Welcome to ziplify");
+            toast.success("Please verify your email");
             setFormdata({ name: "", email: "", password: "", confirmPassword: "" });
             navigate("/dashboard");
         } catch (error) {

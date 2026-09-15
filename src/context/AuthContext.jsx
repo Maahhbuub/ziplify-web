@@ -24,8 +24,8 @@ export const AuthProvider = ({ children }) => {
 
     const register = async (formData) => {
         const res = await api.post("/auth/register", formData);
-        setAccessToken(res.data.accessToken);
-        setUser(res.data.user);
+        // setAccessToken(res.data.accessToken);
+        // setUser(res.data.user);
         return res.data;
     };
 
