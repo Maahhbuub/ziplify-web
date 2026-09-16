@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../../hooks/UseAuth';
+import api from '../../api/api';
 
 function Login() {
     const navigate = useNavigate();
@@ -16,6 +17,8 @@ function Login() {
 
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [showResend, setShowResend] = useState(false);
+    const [resending, setResending] = useState(false);
     const passwordRef = useRef(null);
 
     const togglePassword = () => setShowPassword(p => !p);
@@ -26,10 +29,12 @@ function Login() {
             ...curr,
             [name]: value
         }))
+        setShowResend(false); // clear the resend prompt once they start editing again
     }
 
     let handleSubmit = async (event) => {
         event.preventDefault();
+        setShowResend(false);
 
         if (!formData.email) return toast.error("Email can't be empty");
         if (!formData.password) return toast.error("Password can't be empty");
@@ -41,9 +46,31 @@ function Login() {
             setFormdata({ email: "", password: "" });
             navigate('/dashboard');
         } catch (error) {
-            toast.error(error.response?.data?.message || "Login failed");
+            const code = error.response?.data?.code;
+
+            if (code === 'EMAIL_NOT_VERIFIED') {
+                toast.error("Please verify your email");
+                setShowResend(true);
+            } else {
+                toast.error(error.response?.data?.message || "Login failed");
+            }
         } finally {
             setLoading(false);
+        }
+    }
+
+    const handleResend = async () => {
+        setResending(true);
+        try {
+            await api.post('/auth/resend-verification', { email: formData.email });
+            toast.success("A new link has been sent");
+            setShowResend(false);
+        } catch (error) {
+            const message = error.response?.data?.message || "Something went wrong. Please try again.";
+            toast.error(message);
+            setShowResend(false);
+        } finally {
+            setResending(false);
         }
     }
 
@@ -73,6 +100,16 @@ function Login() {
                         </div>
 
                         <div className={`${styles.forget}`}>
+                            {showResend && (
+                                <button
+                                    type="button"
+                                    onClick={handleResend}
+                                    disabled={resending}
+                                    className={styles.resendLink}
+                                >
+                                    {resending ? 'Sending...' : 'Resend verification email'}
+                                </button>
+                            )}
                             <Link to='/auth/forget'>Forget password?</Link>
                         </div>
 
