@@ -4,12 +4,15 @@ import LinkCreator from '../components/dashboard/LinkCreator';
 import StatsGrid from '../components/dashboard/StatsGrid';
 import LinksTable from '../components/dashboard/LinksTable';
 import ClicksChart from '../components/dashboard/ClicksChart';
+import AuthLoader from '../components/ui/AuthLoader';
 import styles from './Dashboard.module.css';
 import api from '../api/api';
+import toast from 'react-hot-toast';
 
 function Dashboard() {
     const { user } = useAuth();
-    const [links, setLinks] = useState();
+    const [links, setLinks] = useState(null);
+    const [loadingLinks, setLoadingLinks] = useState(true);
 
     const greeting = () => {
         const h = new Date().getHours();
@@ -19,11 +22,16 @@ function Dashboard() {
     };
 
     const getLinks = async () => {
+        setLoadingLinks(true);
         try {
             const res = await api.get('/dashboard/urls');
             setLinks(res.data);
         } catch (err) {
             console.error(err.response?.data || err.message);
+            const msg = err.response?.data?.message || (typeof err.response?.data === 'string' ? err.response?.data : null) || "Failed to load your links";
+            toast.error(msg);
+        } finally {
+            setLoadingLinks(false);
         }
     };
 
@@ -33,15 +41,35 @@ function Dashboard() {
 
     const handleDelete = async (id) => {
         try {
+            if (!window.confirm("Delete this link? This can't be undone.")) return;
             await api.delete(`/dashboard/urls/${id}`);
             setLinks(prev => (
                 { ...prev, data: prev.data.filter(l => l.id !== id) }
             ));
             // getLinks();
         } catch (err) {
-            console.error(err.response?.data || err.message);
+            toast.error(err.response?.data?.message || "Failed to delete link");
         }
     };
+
+    const handleAddLink = (newUrl) => {
+        if (newUrl) {
+            setLinks(prev => ({
+                ...prev,
+                data: [newUrl, ...(prev?.data || [])]
+            }));
+        } else {
+            getLinks();
+        }
+    };
+
+    if (loadingLinks && !links) {
+        return (
+            <div className={styles.page}>
+                <AuthLoader fullScreen={false} label="Loading your links..." />
+            </div>
+        );
+    }
 
     return (
         <div className={styles.page}>
@@ -51,7 +79,7 @@ function Dashboard() {
                     <p className={styles.greetingSub}>Here's what's happening with your links today.</p>
                 </div>
 
-                <LinkCreator onSuccess={getLinks} />
+                <LinkCreator onAdd={handleAddLink} />
                 <StatsGrid urls={links?.data || []} />
 
                 <div className={styles.mainGrid}>

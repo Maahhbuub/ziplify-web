@@ -48,7 +48,7 @@ function MyLinks() {
                 </div>
 
                 {/* Creator */}
-                <LinkCreator onAdd={handleAdd} />
+                <LinkCreator onSuccess={handleAdd} />
 
                 {/* Search + filter bar */}
                 <div className={styles.toolbar}>

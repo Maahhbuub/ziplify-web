@@ -12,7 +12,7 @@ const EXPIRE_OPTIONS = [
     { label: '1 year', value: '365' },
 ];
 
-function LinkCreator({ onSuccess }) {
+function LinkCreator({ onAdd }) {
     const [formdata, setFormdata] = useState({
         url: "",
         alias: "",
@@ -74,7 +74,7 @@ function LinkCreator({ onSuccess }) {
 
             toast.success(res.data.message);
             setFormdata({ url: '', alias: '', expireDay: '' });
-            if (onSuccess) onSuccess();
+            if (onAdd) onAdd(res.data.url);
 
         } catch (err) {
             console.error(err.response?.data || err.message);

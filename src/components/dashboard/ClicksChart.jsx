@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { TrendingUp } from 'lucide-react';
 import styles from './ClicksChart.module.css';
 
@@ -27,17 +28,26 @@ function SparkLine({ data }) {
 }
 
 function ClicksChart({ links = [] }) {
-    // Sort by clicks descending for top performers
-    const sorted = [...links].sort((a, b) => (b.clickCount || 0) - (a.clickCount || 0));
-    const topLinks = sorted.slice(0, 3);
-    const maxClicks = topLinks[0]?.clickCount || 1;
+    const { chartData, totalClicks, topLinks, maxClicks } = useMemo(() => {
+        // Sort by clicks descending for top performers
+        const sorted = [...links].sort((a, b) => (b.clickCount || 0) - (a.clickCount || 0));
+        const top = sorted.slice(0, 3);
+        const max = top[0]?.clickCount || 1;
 
-    // Build sparkline from clickCount values (sorted by createdAt)
-    const chartData = [...links]
-        .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
-        .map(l => l.clickCount || 0);
+        // Build sparkline from clickCount values (sorted by createdAt)
+        const data = [...links]
+            .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+            .map(l => l.clickCount || 0);
 
-    const totalClicks = links.reduce((sum, l) => sum + (l.clickCount || 0), 0);
+        const total = links.reduce((sum, l) => sum + (l.clickCount || 0), 0);
+
+        return {
+            chartData: data,
+            totalClicks: total,
+            topLinks: top,
+            maxClicks: max,
+        };
+    }, [links]);
 
     return (
         <div className={styles.card}>

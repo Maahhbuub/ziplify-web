@@ -4,9 +4,9 @@ import styles from "./AuthLoader.module.css";
  * Full-screen authentication loader shown while the app verifies
  * the current user session (used by GuestRoute & PrivateRoute).
  */
-const AuthLoader = () => {
+const AuthLoader = ({ label = "Verifying session", fullScreen = true }) => {
     return (
-        <div className={styles.overlay} role="status" aria-label="Verifying authentication">
+        <div className={fullScreen ? styles.overlay : styles.inline} role="status" aria-label={label}>
 
             {/* ── Orbital spinner scene ── */}
             <div className={styles.scene}>
@@ -25,7 +25,7 @@ const AuthLoader = () => {
             </div>
 
             {/* ── Label ── */}
-            <p className={styles.label}>Verifying session</p>
+            <p className={styles.label}>{label}</p>
 
             {/* ── Dot trail ── */}
             <div className={styles.dots} aria-hidden="true">

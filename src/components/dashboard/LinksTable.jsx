@@ -1,13 +1,17 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Link2, Copy, Check, Trash2, ExternalLink } from 'lucide-react';
+import toast from 'react-hot-toast';
 import styles from './LinksTable.module.css';
 
 function LinksTable({ links = [], onDelete }) {
     const [copiedId, setCopiedId] = useState(null);
-    const visibleLinks = [...links] // sort in descending order
-        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-        .slice(0, 5);
+
+    const visibleLinks = useMemo(() => {
+        return [...links]
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            .slice(0, 5);
+    }, [links]);
 
     const handleCopy = async (code, id) => {
         try {
@@ -15,7 +19,9 @@ function LinksTable({ links = [], onDelete }) {
             await navigator.clipboard.writeText(shortUrl);
             setCopiedId(id);
             setTimeout(() => setCopiedId(null), 2000);
-        } catch { }
+        } catch {
+            toast.error("Failed to copy link");
+        }
     };
 
     const formatDate = (dateStr) => {
