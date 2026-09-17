@@ -70,7 +70,7 @@ function LinkCreator({ onAdd }) {
             if (formdata.expireDay) payload.expiresInDays = Number(formdata.expireDay);
 
             const res = await api.post('/', payload);
-            setShort(window.location.origin + "/" + res.data.code);
+            setShort(window.location.origin + "/" + res.data.url.shortCode);
 
             toast.success(res.data.message);
             setFormdata({ url: '', alias: '', expireDay: '' });

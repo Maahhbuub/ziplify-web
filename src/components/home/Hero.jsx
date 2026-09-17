@@ -47,7 +47,7 @@ function Hero() {
         setLoading(true);
         try {
             const res = await api.post('/', { longUrl: trimmed });
-            let shortUrl = window.location.origin + "/" + res.data.code
+            let shortUrl = window.location.origin + "/" + res.data.url.shortCode
             setShort(shortUrl);
 
             toast.success(res.data.message);
