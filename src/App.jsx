@@ -12,6 +12,7 @@ import Login from './pages/auth/Login';
 import Signup from './pages/auth/Register';
 import Forget from './pages/auth/Forget';
 import Dashboard from './pages/Dashboard';
+import MyLinks from './pages/MyLinks';
 
 // components
 import NotFound from './components/status/NotFound'
@@ -39,6 +40,7 @@ function App() {
 
       <Route element={<DashboardLayout />}>
         <Route path="/dashboard" element={<PrivateRoute> <Dashboard /> </PrivateRoute>} />
+        <Route path="/dashboard/my-links" element={<PrivateRoute> <MyLinks /> </PrivateRoute>} />
       </Route>
 
       <Route path="/not-found" element={<NotFound />} />

@@ -1,0 +1,57 @@
+/* ── Page shell ── */
+.page {
+    min-height: calc(100dvh - 3.5rem);
+    background: var(--bg-main);
+    background-image:
+        linear-gradient(#e5e7eb 1px, transparent 1px),
+        linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+@media (max-width: 640px) {
+    .container { padding: 1.25rem 1rem; gap: 1rem; }
+}
+
+/* ── Page header ── */
+.pageHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.greeting {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.5px;
+}
+
+@media (max-width: 640px) {
+    .greeting { font-size: 1.3rem; }
+}
+
+.greetingSub {
+    font-size: 0.875rem;
+    color: var(--subtext);
+}
+
+/* ── Main two-column grid ── */
+.mainGrid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 1rem;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .mainGrid { grid-template-columns: 1fr; }
+}
