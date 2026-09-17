@@ -12,7 +12,7 @@ const EXPIRE_OPTIONS = [
     { label: '1 year', value: '365' },
 ];
 
-function LinkCreator() {
+function LinkCreator({ onSuccess }) {
     const [formdata, setFormdata] = useState({
         url: "",
         alias: "",
@@ -56,9 +56,12 @@ function LinkCreator() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!formdata.url.trim()) return;
-
+        if (!formdata.url.trim()) {
+            toast.error("URL can not be empty");
+            return;
+        };
         setLoading(true);
+
         try {
             const payload = {
                 longUrl: formdata.url.trim(),
@@ -67,19 +70,12 @@ function LinkCreator() {
             if (formdata.expireDay) payload.expiresInDays = Number(formdata.expireDay);
 
             const res = await api.post('/', payload);
+            setShort(window.location.origin + "/" + res.data.code);
 
-            const code = res.data.code;
-            const shortUrl = window.location.origin + "/" + code;
-
-            setShort(shortUrl);
-
-            const expireAt = formdata.expireDay
-                ? new Date(Date.now() + Number(formdata.expireDay) * 86400000)
-                    .toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-                : null;
-
-            toast.success(res.data.message || 'Link shortened successfully!');
+            toast.success(res.data.message);
             setFormdata({ url: '', alias: '', expireDay: '' });
+            if (onSuccess) onSuccess();
+
         } catch (err) {
             console.error(err.response?.data || err.message);
             const message = err.response?.data?.message || err.response?.data || err.message;
@@ -97,13 +93,12 @@ function LinkCreator() {
                     <div className={styles.urlInput}>
                         <Link2 size={16} className={styles.icon} />
                         <input
-                            type="url"
+                            type="text"
                             name="url"
                             value={formdata.url}
                             onChange={handleData}
                             placeholder="Paste your long URL here…"
                             id="new-url-input"
-                            required
                         />
                     </div>
 
@@ -181,9 +176,7 @@ function LinkCreator() {
                                 <span>Copied!</span>
                             </>
                         ) : (
-                            <>
-                                <Copy size={14} /> Copy
-                            </>
+                            <> <Copy size={14} /> Copy </>
                         )}
                     </button>
                 </div>

@@ -3,15 +3,26 @@ import { Link } from 'react-router-dom';
 import { Link2, Copy, Check, Trash2, ExternalLink } from 'lucide-react';
 import styles from './LinksTable.module.css';
 
-function LinksTable({ links, onDelete }) {
+function LinksTable({ links = [], onDelete }) {
     const [copiedId, setCopiedId] = useState(null);
+    const visibleLinks = [...links] // sort in descending order
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .slice(0, 5);
 
-    const handleCopy = async (short, id) => {
+    const handleCopy = async (code, id) => {
         try {
-            await navigator.clipboard.writeText('https://' + short);
+            const shortUrl = window.location.origin + '/' + code;
+            await navigator.clipboard.writeText(shortUrl);
             setCopiedId(id);
             setTimeout(() => setCopiedId(null), 2000);
-        } catch { /* ignore */ }
+        } catch { }
+    };
+
+    const formatDate = (dateStr) => {
+        if (!dateStr) return '—';
+        return new Date(dateStr).toLocaleDateString('en-US', {
+            month: 'short', day: 'numeric', year: 'numeric'
+        });
     };
 
     return (
@@ -34,29 +45,34 @@ function LinksTable({ links, onDelete }) {
                             <th>Original URL</th>
                             <th>Clicks</th>
                             <th>Created</th>
-                            <th></th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {links.map(link => (
+                        {visibleLinks.map(link => (
                             <tr key={link.id}>
                                 <td>
-                                    <a href={'https://' + link.short} target="_blank" rel="noopener noreferrer" className={styles.shortLink}>
-                                        {link.short} <ExternalLink size={11} />
+                                    <a
+                                        href={window.location.origin + '/' + link.shortCode}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={styles.shortLink}
+                                    >
+                                        {link.shortCode} <ExternalLink size={11} />
                                     </a>
                                 </td>
                                 <td>
-                                    <span className={styles.originalUrl} title={link.original}>
-                                        {link.original.length > 45 ? link.original.slice(0, 45) + '…' : link.original}
+                                    <span className={styles.originalUrl} title={link.longUrl}>
+                                        {link.longUrl?.length > 45 ? link.longUrl.slice(0, 45) + '…' : link.longUrl}
                                     </span>
                                 </td>
-                                <td><span className={styles.clicks}>{link.clicks.toLocaleString()}</span></td>
-                                <td><span className={styles.date}>{link.date}</span></td>
+                                <td><span className={styles.clicks}>{(link.clickCount || 0).toLocaleString()}</span></td>
+                                <td><span className={styles.date}>{formatDate(link.createdAt)}</span></td>
                                 <td>
                                     <div className={styles.actions}>
                                         <button
                                             className={`${styles.actionBtn} ${copiedId === link.id ? styles.copied : ''}`}
-                                            onClick={() => handleCopy(link.short, link.id)}
+                                            onClick={() => handleCopy(link.shortCode, link.id)}
                                             title="Copy"
                                         >
                                             {copiedId === link.id ? <Check size={14} /> : <Copy size={14} />}

@@ -1,22 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '../hooks/UseAuth';
 import LinkCreator from '../components/dashboard/LinkCreator';
 import StatsGrid from '../components/dashboard/StatsGrid';
 import LinksTable from '../components/dashboard/LinksTable';
 import ClicksChart from '../components/dashboard/ClicksChart';
 import styles from './Dashboard.module.css';
-
-const MOCK_LINKS = [
-    { id: 1, original: 'https://www.google.com/search?q=react+dashboard+ui', short: 'zplfy.io/goog1', clicks: 342, date: 'Sep 17, 2026' },
-    { id: 2, original: 'https://github.com/mahbub/ziplify-web/blob/main/README.md', short: 'zplfy.io/ghb2', clicks: 210, date: 'Sep 16, 2026' },
-    { id: 3, original: 'https://tailwindcss.com/docs/installation', short: 'zplfy.io/twnd3', clicks: 189, date: 'Sep 15, 2026' },
-    { id: 4, original: 'https://react.dev/learn/adding-interactivity', short: 'zplfy.io/rct4', clicks: 97, date: 'Sep 14, 2026' },
-    { id: 5, original: 'https://vite.dev/guide/', short: 'zplfy.io/vite5', clicks: 54, date: 'Sep 12, 2026' },
-];
+import api from '../api/api';
 
 function Dashboard() {
     const { user } = useAuth();
-    const [links, setLinks] = useState(MOCK_LINKS);
+    const [links, setLinks] = useState();
 
     const greeting = () => {
         const h = new Date().getHours();
@@ -25,29 +18,45 @@ function Dashboard() {
         return 'Good evening';
     };
 
-    const handleAdd    = (link) => setLinks(prev => [link, ...prev]);
-    const handleDelete = (id)   => setLinks(prev => prev.filter(l => l.id !== id));
+    const getLinks = async () => {
+        try {
+            const res = await api.get('/dashboard/urls');
+            setLinks(res.data);
+        } catch (err) {
+            console.error(err.response?.data || err.message);
+        }
+    };
+
+    useEffect(() => {
+        getLinks();
+    }, []);
+
+    const handleDelete = async (id) => {
+        try {
+            await api.delete(`/dashboard/urls/${id}`);
+            setLinks(prev => (
+                { ...prev, data: prev.data.filter(l => l.id !== id) }
+            ));
+            // getLinks();
+        } catch (err) {
+            console.error(err.response?.data || err.message);
+        }
+    };
 
     return (
         <div className={styles.page}>
             <div className={styles.container}>
-
-                {/* Header */}
                 <div className={styles.pageHeader}>
                     <h1 className={styles.greeting}>{greeting()}, {user?.name?.split(' ')[0] ?? 'there'}</h1>
                     <p className={styles.greetingSub}>Here's what's happening with your links today.</p>
                 </div>
 
-                {/* Link creator */}
-                <LinkCreator onAdd={handleAdd} />
+                <LinkCreator onSuccess={getLinks} />
+                <StatsGrid urls={links?.data || []} />
 
-                {/* Stats */}
-                <StatsGrid />
-
-                {/* Table + Chart */}
                 <div className={styles.mainGrid}>
-                    <LinksTable links={links} onDelete={handleDelete} />
-                    <ClicksChart links={links} />
+                    <LinksTable links={links?.data || []} onDelete={handleDelete} />
+                    <ClicksChart links={links?.data || []} />
                 </div>
 
             </div>
