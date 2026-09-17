@@ -47,7 +47,7 @@ function Signup() {
             await register(formData);
             toast.success("Please verify your email");
             setFormdata({ name: "", email: "", password: "", confirmPassword: "" });
-            navigate("/dashboard");
+            navigate("/auth/login");
         } catch (error) {
             toast.error(error.response?.data?.message || "Signup failed");
         } finally {

@@ -19,6 +19,7 @@ import LinkExpired from './components/status/LinkExpired'
 import GuestRoute from './routes/GuestRoute'
 import PrivateRoute from './routes/PrivateRoute'
 import VerifyEmail from './components/status/VerifyEmail';
+import ResetPassword from './pages/auth/ResetPassword';
 
 function App() {
 
@@ -31,8 +32,9 @@ function App() {
       <Route element={<AuthLayout />}>
         <Route path="/auth/login" element={<GuestRoute> <Login /> </GuestRoute>} />
         <Route path="/auth/signup" element={<GuestRoute> <Signup /> </GuestRoute>} />
-        <Route path="/auth/forget" element={<GuestRoute> <Forget /> </GuestRoute>} />
+        <Route path="/auth/forgot" element={<GuestRoute> <Forget /> </GuestRoute>} />
         <Route path='/auth/verify-email' element={<VerifyEmail />} ></Route>
+        <Route path='/auth/reset-password' element={<ResetPassword />} ></Route>
       </Route>
 
       <Route element={<DashboardLayout />}>

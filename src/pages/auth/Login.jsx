@@ -110,7 +110,7 @@ function Login() {
                                     {resending ? 'Sending...' : 'Resend verification email'}
                                 </button>
                             )}
-                            <Link to='/auth/forget'>Forget password?</Link>
+                            <Link to='/auth/forgot'>Forget password?</Link>
                         </div>
 
                         <button type='submit' className={`${styles.submitBtn} ${loading ? 'btn-loading' : ''}`}>Login</button>

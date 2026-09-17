@@ -3,18 +3,20 @@ import styles from './Forget.module.css'
 
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import api from '../../api/api';
 
 
 function Forget() {
     const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
+    const [loading, setLoading] = useState(false);
 
     let handleData = (event) => {
         setEmail(event.target.value);
     }
 
-    let handleSubmit = (event) => {
+    let handleSubmit = async (event) => {
         event.preventDefault();
 
         if (!email) {
@@ -22,11 +24,17 @@ function Forget() {
             return;
         }
 
-        console.log(email);
-        toast.success("Email send successfully");
-        setEmail("");
-
-        navigate('/auth/login');
+        setLoading(true);
+        try {
+            await api.post('/auth/forgot-password', { email });
+            toast.success("Email sent successfully");
+            setEmail("");
+            navigate('/auth/login');
+        } catch (error) {
+            toast.error(error.response?.data?.message || "Something went wrong");
+        } finally {
+            setLoading(false);
+        }
     }
 
     return (
@@ -44,7 +52,7 @@ function Forget() {
                             <input onChange={handleData} value={email} type="email" name='email' id='email' placeholder='Your email address' autoComplete='email' />
                         </div>
 
-                        <button type='submit' className={`${styles.submitBtn}`}>Send</button>
+                        <button type='submit' className={`${styles.submitBtn} ${loading ? 'btn-loading' : ''}`}>{loading ? 'Sending...' : 'Send'}</button>
                     </form>
                 </div>
 
