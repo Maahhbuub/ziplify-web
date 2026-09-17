@@ -20,7 +20,6 @@
     .container { padding: 1.25rem 1rem; gap: 1rem; }
 }
 
-/* ── Header ── */
 .pageHeader {
     display: flex;
     align-items: flex-start;
@@ -56,7 +55,6 @@
     align-self: center;
 }
 
-/* ── Search / toolbar ── */
 .toolbar {
     display: flex;
     align-items: center;
@@ -214,7 +212,6 @@
     margin-left: 0.2rem;
 }
 
-/* ── Card + Table ── */
 .card {
     background: white;
     border: 1px solid var(--border);
@@ -311,7 +308,6 @@
 .copied { color: #10b981 !important; background: #ecfdf5 !important; }
 .deleteBtn:hover { background: #fff0f0 !important; color: #e05252 !important; }
 
-/* ── Empty state ── */
 .empty {
     display: flex;
     flex-direction: column;
@@ -322,7 +318,6 @@
     font-size: 0.875rem;
 }
 
-/* ── Expired badge ── */
 .expiredBadge {
     font-size: 0.72rem;
     font-weight: 600;
@@ -335,7 +330,6 @@
     display: inline-block;
 }
 
-/* ── Mobile ── */
 @media (max-width: 640px) {
     .table th, .table td { padding: 0.6rem 0.75rem; }
     .originalUrl { max-width: 10rem; }

@@ -150,7 +150,6 @@ function MyLinks() {
         <div className={styles.page}>
             <div className={styles.container}>
 
-                {/* Header */}
                 <div className={styles.pageHeader}>
                     <div>
                         <h1 className={styles.title}>My Links</h1>
@@ -163,10 +162,8 @@ function MyLinks() {
                     )}
                 </div>
 
-                {/* Creator */}
                 <LinkCreator onAdd={handleAdd} />
 
-                {/* Search + Filter toolbar */}
                 <div className={styles.toolbar}>
                     <div className={styles.searchWrap}>
                         <Search size={15} className={styles.searchIcon} />
@@ -181,7 +178,6 @@ function MyLinks() {
                     </div>
 
                     <div className={styles.toolbarRight}>
-                        {/* Status Filter Dropdown */}
                         <div className={styles.dropdownWrap} ref={statusDropRef}>
                             <button
                                 type="button"
@@ -220,7 +216,6 @@ function MyLinks() {
                             )}
                         </div>
 
-                        {/* Sort Order Dropdown */}
                         <div className={styles.dropdownWrap} ref={sortDropRef}>
                             <button
                                 type="button"
@@ -267,7 +262,6 @@ function MyLinks() {
                     </div>
                 </div>
 
-                {/* Links list table */}
                 <div className={styles.card}>
                     <div className={styles.tableWrap}>
                         <table className={styles.table}>
@@ -375,7 +369,6 @@ function MyLinks() {
                     </div>
                 </div>
 
-                {/* Delete Confirmation Modal */}
                 <ConfirmModal
                     isOpen={Boolean(deleteId)}
                     onClose={() => !isDeleting && setDeleteId(null)}
