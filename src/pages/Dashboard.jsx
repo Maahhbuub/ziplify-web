@@ -4,7 +4,7 @@ import LinkCreator from '../components/dashboard/LinkCreator';
 import StatsGrid from '../components/dashboard/StatsGrid';
 import LinksTable from '../components/dashboard/LinksTable';
 import ClicksChart from '../components/dashboard/ClicksChart';
-import AuthLoader from '../components/ui/AuthLoader';
+import ConfirmModal from '../components/ui/ConfirmModal';
 import styles from './Dashboard.module.css';
 import api from '../api/api';
 import toast from 'react-hot-toast';
@@ -13,6 +13,8 @@ function Dashboard() {
     const { user } = useAuth();
     const [links, setLinks] = useState(null);
     const [loadingLinks, setLoadingLinks] = useState(true);
+    const [deleteId, setDeleteId] = useState(null);
+    const [isDeleting, setIsDeleting] = useState(false);
 
     const greeting = () => {
         const h = new Date().getHours();
@@ -39,18 +41,30 @@ function Dashboard() {
         getLinks();
     }, []);
 
-    const handleDelete = async (id) => {
+    const handleDeleteClick = (id) => {
+        setDeleteId(id);
+    };
+
+    const handleConfirmDelete = async () => {
+        if (!deleteId) return;
+        setIsDeleting(true);
         try {
-            if (!window.confirm("Delete this link? This can't be undone.")) return;
-            await api.delete(`/dashboard/urls/${id}`);
-            setLinks(prev => (
-                { ...prev, data: prev.data.filter(l => l.id !== id) }
-            ));
-            // getLinks();
+            await api.delete(`/dashboard/urls/${deleteId}`);
+            setLinks(prev => ({
+                ...prev,
+                data: (prev?.data || []).filter(l => l.id !== deleteId)
+            }));
+            toast.success("Link deleted successfully");
+            setDeleteId(null);
         } catch (err) {
+            console.error(err);
             toast.error(err.response?.data?.message || "Failed to delete link");
+        } finally {
+            setIsDeleting(false);
         }
     };
+
+    const targetLink = links?.data?.find(l => l.id === deleteId);
 
     const handleAddLink = (newUrl) => {
         if (newUrl) {
@@ -63,13 +77,7 @@ function Dashboard() {
         }
     };
 
-    if (loadingLinks && !links) {
-        return (
-            <div className={styles.page}>
-                <AuthLoader fullScreen={false} label="Loading your links..." />
-            </div>
-        );
-    }
+    const isInitialLoading = loadingLinks && !links;
 
     return (
         <div className={styles.page}>
@@ -80,13 +88,23 @@ function Dashboard() {
                 </div>
 
                 <LinkCreator onAdd={handleAddLink} />
-                <StatsGrid urls={links?.data || []} />
+                <StatsGrid urls={links?.data || []} loading={isInitialLoading} />
 
                 <div className={styles.mainGrid}>
-                    <LinksTable links={links?.data || []} onDelete={handleDelete} />
-                    <ClicksChart links={links?.data || []} />
+                    <LinksTable links={links?.data || []} onDelete={handleDeleteClick} loading={isInitialLoading} />
+                    <ClicksChart links={links?.data || []} loading={isInitialLoading} />
                 </div>
 
+                <ConfirmModal
+                    isOpen={Boolean(deleteId)}
+                    onClose={() => !isDeleting && setDeleteId(null)}
+                    onConfirm={handleConfirmDelete}
+                    isLoading={isDeleting}
+                    title="Delete Short Link"
+                    message="Are you sure you want to delete this link? Anyone visiting this URL will no longer be redirected. This action cannot be undone."
+                    itemDetails={targetLink}
+                    confirmText="Yes, Delete"
+                />
             </div>
         </div>
     );

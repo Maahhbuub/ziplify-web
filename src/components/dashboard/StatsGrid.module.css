@@ -56,3 +56,32 @@
     .value { font-size: 1.2rem; }
     .label { font-size: 0.7rem; }
 }
+
+/* ── Skeleton Styles ── */
+.skeletonCard {
+    pointer-events: none;
+}
+
+.skeletonIcon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.skeletonTextWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    flex: 1;
+}
+
+.skeletonLabel {
+    width: 65px;
+    height: 12px;
+}
+
+.skeletonValue {
+    width: 44px;
+    height: 22px;
+}

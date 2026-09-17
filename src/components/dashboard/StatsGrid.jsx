@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { Link2, MousePointerClick, CalendarDays, TrendingUp } from 'lucide-react';
 import styles from './StatsGrid.module.css';
 
-function StatsGrid({ urls = [] }) {
+function StatsGrid({ urls = [], loading = false }) {
     const stats = useMemo(() => {
         const totalLinks = urls.length;
         const totalClicks = urls.reduce((sum, url) => sum + (url.clickCount || 0), 0);
@@ -26,6 +26,22 @@ function StatsGrid({ urls = [] }) {
             { label: 'Avg. Clicks/Link', value: avgClicksPerLink, icon: TrendingUp, color: '#8b5cf6', bg: '#f5f3ff' },
         ];
     }, [urls]);
+
+    if (loading) {
+        return (
+            <div className={styles.grid}>
+                {[1, 2, 3, 4].map(n => (
+                    <div key={n} className={styles.card}>
+                        <div className={`skeleton ${styles.skeletonIcon}`} />
+                        <div className={styles.skeletonTextWrap}>
+                            <div className={`skeleton ${styles.skeletonLabel}`} />
+                            <div className={`skeleton ${styles.skeletonValue}`} />
+                        </div>
+                    </div>
+                ))}
+            </div>
+        );
+    }
 
     return (
         <div className={styles.grid}>

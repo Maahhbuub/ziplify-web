@@ -140,3 +140,42 @@
     .shortLink { font-size: 0.78rem; }
     .originalUrl { max-width: 10rem; }
 }
+
+/* ── Skeleton Placeholders ── */
+.skeletonBadge {
+    width: 48px;
+    height: 18px;
+    border-radius: 99px;
+}
+
+.skeletonRow td {
+    padding: 0.85rem 1rem;
+}
+
+.skeletonShort {
+    width: 80px;
+    height: 14px;
+}
+
+.skeletonOriginal {
+    width: 140px;
+    height: 14px;
+}
+
+.skeletonClicks {
+    width: 28px;
+    height: 14px;
+}
+
+.skeletonDate {
+    width: 68px;
+    height: 14px;
+}
+
+.skeletonActions {
+    width: 44px;
+    height: 24px;
+    margin-left: auto;
+    border-radius: 6px;
+}
+

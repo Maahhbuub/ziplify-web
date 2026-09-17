@@ -27,7 +27,7 @@ function SparkLine({ data }) {
     );
 }
 
-function ClicksChart({ links = [] }) {
+function ClicksChart({ links = [], loading = false }) {
     const { chartData, totalClicks, topLinks, maxClicks } = useMemo(() => {
         // Sort by clicks descending for top performers
         const sorted = [...links].sort((a, b) => (b.clickCount || 0) - (a.clickCount || 0));
@@ -48,6 +48,32 @@ function ClicksChart({ links = [] }) {
             maxClicks: max,
         };
     }, [links]);
+
+    if (loading) {
+        return (
+            <div className={styles.card}>
+                <div className={styles.header}>
+                    <div className={`skeleton ${styles.skeletonTitle}`} />
+                    <div className={`skeleton ${styles.skeletonBadge}`} />
+                </div>
+                <div className={styles.skeletonChartArea}>
+                    <div className={`skeleton ${styles.skeletonSparkline}`} />
+                </div>
+                <div className={styles.chartFooter}>
+                    <div className={`skeleton ${styles.skeletonSmallText}`} />
+                    <div className={`skeleton ${styles.skeletonSmallText}`} />
+                </div>
+                <div className={styles.trendStat}>
+                    <div className={`skeleton ${styles.skeletonTrend}`} />
+                </div>
+                <div className={styles.topLinks}>
+                    <div className={`skeleton ${styles.skeletonTopLabel}`} />
+                    <div className={`skeleton ${styles.skeletonTopRow}`} />
+                    <div className={`skeleton ${styles.skeletonTopRow}`} />
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className={styles.card}>
