@@ -217,13 +217,29 @@
 
 .owner {
     position: absolute;
-    bottom: 2%;
-    right: 1%;
+    bottom: 1.25rem;
+    right: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
     color: var(--subtext);
-    font-size: 0.6rem;
-    font-family: 'Special Elite';
-    text-align: center;
-    margin-top: 0.5rem;
+    font-size: 0.76rem;
+    z-index: 10;
+}
+
+.heartIcon {
+    color: var(--primary);
+    animation: pulseHeart 2s infinite ease-in-out;
+}
+
+@keyframes pulseHeart {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.author {
+    font-weight: 600;
+    color: var(--text);
 }
 
 .explore a {
@@ -241,8 +257,10 @@
 
 @media (max-width: 600px) {
     .owner {
+        bottom: 0.85rem;
         left: 0;
         right: 0;
-        font-size: 0.5rem;
+        justify-content: center;
+        font-size: 0.72rem;
     }
 }

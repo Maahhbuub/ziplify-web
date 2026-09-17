@@ -1,8 +1,6 @@
 import styles from "./Hero.module.css"
 import { useState, useRef, useEffect } from "react";
-import { Link2, Copy, Check } from 'lucide-react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { Link2, Copy, Check, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import api from "../../api/api";
@@ -103,7 +101,10 @@ function Hero() {
                 </p>
             </div>
 
-            <div className={`${styles.owner}`}>Made with <FontAwesomeIcon icon={faHeart} /> by Mahbub</div>
+            <div className={styles.owner}>
+                Made with <Heart size={12} className={styles.heartIcon} fill="currentColor" /> by{' '}
+                <span className={styles.author}>Mahbub</span>
+            </div>
         </section>
     )
 }

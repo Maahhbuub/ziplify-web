@@ -195,14 +195,55 @@
 }
 
 @media (max-width: 640px) {
-    .inner { gap: 0.5rem; padding: 0 0.75rem; }
-    .navLink { padding: 0.4rem 0.5rem; gap: 0; }
-    .navLink span { display: none; }
-    .avatarBtn { padding: 0.3rem 0.3rem; }
-    .chevron { display: none; }
-    .dropdown { width: 12rem; }
+    .inner {
+        gap: 0.4rem;
+        padding: 0 0.75rem;
+    }
+
+    .nav {
+        gap: 0.2rem;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .navLink {
+        padding: 0.35rem 0.55rem;
+        gap: 0.35rem;
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+
+    .avatarBtn {
+        padding: 0.25rem;
+    }
+
+    .chevron {
+        display: none;
+    }
+
+    .dropdown {
+        width: 12rem;
+    }
 }
 
-@media (max-width: 380px) {
-    .nav { gap: 0; }
+@media (max-width: 440px) {
+    .logoText {
+        display: none;
+    }
+
+    .inner {
+        gap: 0.35rem;
+        padding: 0 0.5rem;
+    }
+
+    .navLink {
+        padding: 0.3rem 0.45rem;
+        gap: 0.25rem;
+        font-size: 0.75rem;
+    }
 }
