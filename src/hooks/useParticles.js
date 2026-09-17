@@ -30,7 +30,7 @@ export function useParticles() {
                 this.speedX = (Math.random() - 0.5) * 0.4;
                 this.speedY = (Math.random() - 0.5) * 0.4;
                 this.opacity = Math.random() * 0.5 + 0.1;
-                this.color = Math.random() > 0.5 ? "#735cdd" : "#1A1C1E";
+                this.color = Math.random() > 0.5 ? "#e07a5f" : "#1A1C1E";
             }
             update() {
                 this.x += this.speedX;
