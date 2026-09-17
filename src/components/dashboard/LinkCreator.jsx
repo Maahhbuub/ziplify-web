@@ -12,7 +12,7 @@ const EXPIRE_OPTIONS = [
     { label: '1 year', value: '365' },
 ];
 
-function LinkCreator({ onAdd }) {
+function LinkCreator() {
     const [formdata, setFormdata] = useState({
         url: "",
         alias: "",
@@ -77,17 +77,6 @@ function LinkCreator({ onAdd }) {
                 ? new Date(Date.now() + Number(formdata.expireDay) * 86400000)
                     .toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
                 : null;
-
-            if (onAdd) {
-                onAdd({
-                    id: res.data._id || Date.now(),
-                    original: formdata.url.trim(),
-                    short: shortUrl,
-                    clicks: 0,
-                    expireAt,
-                    date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-                });
-            }
 
             toast.success(res.data.message || 'Link shortened successfully!');
             setFormdata({ url: '', alias: '', expireDay: '' });
