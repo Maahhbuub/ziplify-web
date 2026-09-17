@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import styles from './Signup.module.css';
+import styles from './Register.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { Eye, EyeOff } from 'lucide-react';
