@@ -215,11 +215,6 @@
 
 /* ── Mobile ── */
 @media (max-width: 640px) {
-    .table th:nth-child(2),
-    .table td:nth-child(2) { display: none; } /* hide Original URL */
-    .table th:nth-child(4),
-    .table td:nth-child(4) { display: none; } /* hide Expires */
-    .table th:nth-child(5),
-    .table td:nth-child(5) { display: none; } /* hide Created */
     .table th, .table td { padding: 0.6rem 0.75rem; }
+    .originalUrl { max-width: 10rem; }
 }

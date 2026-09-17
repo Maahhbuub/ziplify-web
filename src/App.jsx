@@ -21,6 +21,8 @@ import GuestRoute from './routes/GuestRoute'
 import PrivateRoute from './routes/PrivateRoute'
 import VerifyEmail from './components/status/VerifyEmail';
 import ResetPassword from './pages/auth/ResetPassword';
+import Profile from './pages/Profile';
+import Analytics from './pages/Analytics';
 
 function App() {
 
@@ -41,6 +43,8 @@ function App() {
       <Route element={<DashboardLayout />}>
         <Route path="/dashboard" element={<PrivateRoute> <Dashboard /> </PrivateRoute>} />
         <Route path="/dashboard/my-links" element={<PrivateRoute> <MyLinks /> </PrivateRoute>} />
+        <Route path="/dashboard/profile" element={<PrivateRoute> <Profile /> </PrivateRoute>} />
+        <Route path="/dashboard/analytics" element={<PrivateRoute> <Analytics /> </PrivateRoute>} />
       </Route>
 
       <Route path="/not-found" element={<NotFound />} />
@@ -50,4 +54,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

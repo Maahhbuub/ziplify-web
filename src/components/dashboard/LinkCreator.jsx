@@ -1,17 +1,18 @@
 import { useState, useRef, useEffect } from 'react';
-import { Link2, CalendarDays, ChevronDown, Check } from 'lucide-react';
+import { Link2, CalendarDays, ChevronDown, Check, PenLine } from 'lucide-react';
 import styles from './LinkCreator.module.css';
 
 const EXPIRE_OPTIONS = [
-    { label: 'No expiry',  value: '' },
-    { label: '10 days',    value: '10' },
-    { label: '30 days',    value: '30' },
-    { label: '6 months',   value: '180' },
-    { label: '1 year',     value: '365' },
+    { label: 'No expiry', value: '' },
+    { label: '10 days', value: '10' },
+    { label: '30 days', value: '30' },
+    { label: '6 months', value: '180' },
+    { label: '1 year', value: '365' },
 ];
 
 function LinkCreator({ onAdd }) {
     const [newUrl, setNewUrl] = useState('');
+    const [customAlias, setCustomAlias] = useState('');
     const [expireDays, setExpireDays] = useState('');
     const [dropOpen, setDropOpen] = useState(false);
     const dropRef = useRef(null);
@@ -36,13 +37,14 @@ function LinkCreator({ onAdd }) {
         onAdd({
             id: Date.now(),
             original: newUrl.trim(),
-            short: `zplfy.io/${Math.random().toString(36).slice(2, 7)}`,
+            short: `zplfy.io/${customAlias.trim() || Math.random().toString(36).slice(2, 7)}`,
             clicks: 0,
             expireAt,
             date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
         });
 
         setNewUrl('');
+        setCustomAlias('');
         setExpireDays('');
     };
 
@@ -59,6 +61,17 @@ function LinkCreator({ onAdd }) {
                         placeholder="Paste your long URL here…"
                         id="new-url-input"
                         required
+                    />
+                </div>
+
+                <div className={styles.aliasWrap}>
+                    <PenLine size={15} className={styles.icon} />
+                    <input
+                        type="text"
+                        value={customAlias}
+                        onChange={e => setCustomAlias(e.target.value)}
+                        placeholder="alias (optional)"
+                        className={styles.aliasInput}
                     />
                 </div>
 

@@ -79,7 +79,15 @@
 .table tbody tr { transition: background 0.15s ease; }
 .table tbody tr:hover { background: var(--bg-alt); }
 
-.originalUrl { color: var(--subtext); font-size: 0.82rem; }
+.originalUrl {
+    color: var(--subtext);
+    font-size: 0.82rem;
+    max-width: 22rem;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 .shortLink {
     display: inline-flex;
@@ -128,9 +136,7 @@
 
 @media (max-width: 640px) {
     .header { padding: 0.85rem 1rem; }
-    .table th:nth-child(2),
-    .table td:nth-child(2) { display: none; } 
     .table th, .table td { padding: 0.6rem 0.75rem; }
     .shortLink { font-size: 0.78rem; }
-    .date { display: none; }
+    .originalUrl { max-width: 10rem; }
 }

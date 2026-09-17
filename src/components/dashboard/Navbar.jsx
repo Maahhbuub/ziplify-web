@@ -85,7 +85,7 @@ function Navbar() {
                                 <p className={styles.dropdownEmail}>{user?.email}</p>
                             </div>
                             <div className={styles.dropdownDivider} />
-                            <Link to="/dashboard/settings" className={styles.dropdownItem} onClick={() => setDropdownOpen(false)}>
+                            <Link to="/dashboard/profile" className={styles.dropdownItem} onClick={() => setDropdownOpen(false)}>
                                 <User size={14} /> Profile
                             </Link>
                             <button className={`${styles.dropdownItem} ${styles.logoutItem}`} onClick={handleLogout}>

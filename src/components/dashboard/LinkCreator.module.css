@@ -5,8 +5,8 @@
     background: white;
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 1rem 1.25rem;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    padding: 0.55rem 1.25rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
 }
 
 .fields {
@@ -16,7 +16,6 @@
     min-width: 0;
 }
 
-/* URL input */
 .urlInput {
     display: flex;
     align-items: center;
@@ -24,7 +23,7 @@
     flex: 1;
     min-width: 0;
     border-right: 1px solid var(--border);
-    padding-right: 1rem;
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
     margin-right: 1rem;
 }
 
@@ -42,9 +41,38 @@
     background: transparent;
     min-width: 0;
     font-family: inherit;
+    padding: 0.3rem 0;
+    color: var(--primary);
 }
 
-.urlInput input::placeholder { color: #b0b3b8; }
+.urlInput input::placeholder {
+    color: #b0b3b8;
+}
+
+.aliasWrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 1rem;
+    margin-right: 1rem;
+    border-right: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.aliasInput {
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+    color: var(--text);
+    background: transparent;
+    font-family: inherit;
+    width: 6.5rem;
+}
+
+.aliasInput::placeholder {
+    color: #b0b3b8;
+}
 
 .expireWrap {
     position: relative;
@@ -74,7 +102,9 @@
     background: color-mix(in srgb, var(--primary) 6%, white);
 }
 
-.expirePlaceholder { color: var(--subtext); }
+.expirePlaceholder {
+    color: var(--subtext);
+}
 
 .expireActive {
     color: var(--primary);
@@ -87,7 +117,9 @@
     flex-shrink: 0;
 }
 
-.chevronOpen { transform: rotate(180deg); }
+.chevronOpen {
+    transform: rotate(180deg);
+}
 
 .menu {
     position: absolute;
@@ -96,7 +128,7 @@
     background: white;
     border: 1px solid var(--border);
     border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
     overflow: hidden;
     z-index: 50;
     min-width: 10rem;
@@ -104,8 +136,15 @@
 }
 
 @keyframes dropIn {
-    from { opacity: 0; transform: translateY(-6px) scale(0.98); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
+    from {
+        opacity: 0;
+        transform: translateY(-6px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .option {
@@ -123,7 +162,9 @@
     transition: background 0.12s ease;
 }
 
-.option:hover { background: var(--bg-alt); }
+.option:hover {
+    background: var(--bg-alt);
+}
 
 .optionActive {
     color: var(--primary);
@@ -146,14 +187,64 @@
     flex-shrink: 0;
 }
 
-.submit:hover { opacity: 0.88; }
+.submit:hover {
+    opacity: 0.88;
+}
 
 @media (max-width: 700px) {
-    .form { flex-direction: column; align-items: stretch; }
-    .fields { flex-direction: column; gap: 0.75rem; align-items: stretch; width: 100%; }
-    .urlInput { border-right: none; border-bottom: 1px solid var(--border); padding-right: 0; margin-right: 0; padding-bottom: 0.75rem; width: 100%; box-sizing: border-box; }
-    .expireWrap { width: 100%; }
-    .expireTrigger { width: 100%; justify-content: space-between; box-sizing: border-box; }
-    .menu { width: 100%; }
-    .submit { width: 100%; text-align: center; padding: 0.6rem; }
+    .form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .fields {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .urlInput {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding-right: 0;
+        margin-right: 0;
+        padding-bottom: 0.75rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .aliasWrap {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding-right: 0;
+        margin-right: 0;
+        padding-bottom: 0.75rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .aliasInput {
+        width: 100%;
+    }
+
+    .expireWrap {
+        width: 100%;
+    }
+
+    .expireTrigger {
+        width: 100%;
+        justify-content: space-between;
+        box-sizing: border-box;
+    }
+
+    .menu {
+        width: 100%;
+    }
+
+    .submit {
+        width: 100%;
+        text-align: center;
+        padding: 0.6rem;
+    }
 }

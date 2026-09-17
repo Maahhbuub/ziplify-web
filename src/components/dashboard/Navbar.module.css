@@ -198,7 +198,6 @@
     .inner { gap: 0.5rem; padding: 0 0.75rem; }
     .navLink { padding: 0.4rem 0.5rem; gap: 0; }
     .navLink span { display: none; }
-    .logoText { display: none; }
     .avatarBtn { padding: 0.3rem 0.3rem; }
     .chevron { display: none; }
     .dropdown { width: 12rem; }
