@@ -9,7 +9,7 @@ const NAV_LINKS = [
     { label: 'Dashboard', to: '/dashboard', icon: LayoutDashboard },
     { label: 'My Links', to: '/dashboard/my-links', icon: LinkIcon },
     { label: 'Analytics', to: '/dashboard/analytics', icon: BarChart2 },
-    { label: 'Settings', to: '/dashboard/settings', icon: Settings },
+    // { label: 'Settings', to: '/dashboard/settings', icon: Settings },
 ];
 
 function Navbar() {
@@ -48,13 +48,11 @@ function Navbar() {
         <header className={styles.navbar}>
             <div className={styles.inner}>
 
-                {/* Logo */}
                 <Link to="/dashboard" className={styles.logo}>
                     <div className={styles.logoIcon}><Link2 size={18} /></div>
                     <span className={styles.logoText}>Ziplify</span>
                 </Link>
 
-                {/* Nav Links */}
                 <nav className={styles.nav}>
                     {NAV_LINKS.map(({ label, to, icon: Icon }) => (
                         <Link
@@ -68,7 +66,6 @@ function Navbar() {
                     ))}
                 </nav>
 
-                {/* User Dropdown */}
                 <div className={styles.userArea} ref={dropdownRef}>
                     <button
                         className={styles.avatarBtn}
@@ -89,7 +86,7 @@ function Navbar() {
                             </div>
                             <div className={styles.dropdownDivider} />
                             <Link to="/dashboard/settings" className={styles.dropdownItem} onClick={() => setDropdownOpen(false)}>
-                                <User size={14} /> Profile & Settings
+                                <User size={14} /> Profile
                             </Link>
                             <button className={`${styles.dropdownItem} ${styles.logoutItem}`} onClick={handleLogout}>
                                 <LogOut size={14} /> Logout

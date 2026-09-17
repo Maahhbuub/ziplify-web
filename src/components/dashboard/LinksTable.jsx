@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Link2, Copy, Check, Trash2, ExternalLink } from 'lucide-react';
 import styles from './LinksTable.module.css';
 
@@ -16,8 +17,13 @@ function LinksTable({ links, onDelete }) {
     return (
         <div className={styles.card}>
             <div className={styles.header}>
-                <h2 className={styles.title}>My Links</h2>
-                <span className={styles.badge}>{links.length} links</span>
+                <div className={styles.headerLeft}>
+                    <h2 className={styles.title}>My Links</h2>
+                    <span className={styles.badge}>{links.length} links</span>
+                </div>
+                <Link to="/dashboard/my-links" className={styles.viewAll}>
+                    View all links &rarr;
+                </Link>
             </div>
 
             <div className={styles.tableWrap}>

@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <App />
     </AuthProvider>
     <Toaster
-      toastOptions={{ success: { iconTheme: { primary: "#735cdd", secondary: "#fff", }, }, }}
+      toastOptions={{ success: { iconTheme: { primary: "#e76f51", secondary: "#fff", }, }, }}
     />
   </BrowserRouter>
 );

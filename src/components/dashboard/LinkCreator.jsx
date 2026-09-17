@@ -50,7 +50,6 @@ function LinkCreator({ onAdd }) {
         <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.fields}>
 
-                {/* URL input */}
                 <div className={styles.urlInput}>
                     <Link2 size={16} className={styles.icon} />
                     <input
@@ -63,7 +62,6 @@ function LinkCreator({ onAdd }) {
                     />
                 </div>
 
-                {/* Expiry dropdown */}
                 <div className={styles.expireWrap} ref={dropRef}>
                     <button
                         type="button"

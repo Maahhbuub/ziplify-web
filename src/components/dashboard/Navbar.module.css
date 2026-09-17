@@ -18,7 +18,6 @@
     gap: 1.5rem;
 }
 
-/* ── Logo ── */
 .logo {
     display: flex;
     align-items: center;
@@ -41,7 +40,6 @@
     border-radius: 8px;
 }
 
-/* ── Nav links ── */
 .nav {
     display: flex;
     align-items: center;
@@ -73,7 +71,6 @@
     font-weight: 600;
 }
 
-/* ── User area ── */
 .userArea {
     position: relative;
     margin-left: auto;
@@ -128,7 +125,6 @@
     transform: rotate(180deg);
 }
 
-/* ── Dropdown ── */
 .dropdown {
     position: absolute;
     top: calc(100% + 0.5rem);
@@ -198,7 +194,6 @@
     background: #fff0f0;
 }
 
-/* ── Mobile: icon-only nav ── */
 @media (max-width: 640px) {
     .inner { gap: 0.5rem; padding: 0 0.75rem; }
     .navLink { padding: 0.4rem 0.5rem; gap: 0; }
