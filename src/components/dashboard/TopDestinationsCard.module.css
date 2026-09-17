@@ -1,0 +1,119 @@
+.card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.15rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.9rem;
+}
+
+.iconWrap {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.domainIcon {
+    background: #fff3f0;
+    color: var(--primary);
+}
+
+.cardTitle {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.2px;
+}
+
+/* ── Top Target Domains Widget ── */
+.domainsList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.domainRow {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.domainInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.78rem;
+}
+
+.domainName {
+    font-weight: 600;
+    color: var(--text);
+    max-width: 12rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.domainCount {
+    color: var(--subtext);
+    font-size: 0.72rem;
+}
+
+.domainBarTrack {
+    height: 5px;
+    background: var(--bg-alt);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.domainBarFill {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 99px;
+    transition: width 0.4s ease;
+}
+
+.emptyWrap {
+    padding: 0.8rem 0;
+    text-align: center;
+}
+
+.emptyText {
+    font-size: 0.78rem;
+    color: var(--subtext);
+}
+
+/* ── Skeletons ── */
+.skeletonIcon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 8px;
+}
+
+.skeletonTitle {
+    width: 90px;
+    height: 14px;
+}
+
+.skeletonDomainRow {
+    width: 100%;
+    height: 18px;
+}

@@ -1,11 +1,7 @@
 /* ── Page shell ── */
 .page {
-    min-height: calc(100dvh - 3.5rem);
-    background: var(--bg-main);
-    background-image:
-        linear-gradient(#e5e7eb 1px, transparent 1px),
-        linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
-    background-size: 50px 50px;
+    flex: 1;
+    background: transparent;
 }
 
 .container {

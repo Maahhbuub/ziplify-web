@@ -1,0 +1,148 @@
+.card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.15rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.9rem;
+}
+
+.iconWrap {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.healthIcon {
+    background: #ecfdf5;
+    color: #10b981;
+}
+
+.cardTitle {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.2px;
+}
+
+/* ── Health Stats ── */
+.healthStats {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.9rem;
+}
+
+.healthItem {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.healthDotActive {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+}
+
+.healthDotWarning {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #f59e0b;
+}
+
+.healthDotExpired {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ef4444;
+}
+
+.healthDetails {
+    display: flex;
+    flex-direction: column;
+}
+
+.healthCount {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.1;
+}
+
+.healthLabel {
+    font-size: 0.68rem;
+    color: var(--subtext);
+    font-weight: 500;
+}
+
+.progressBar {
+    display: flex;
+    height: 6px;
+    background: var(--bg-alt);
+    border-radius: 99px;
+    overflow: hidden;
+    gap: 2px;
+}
+
+.progressActive {
+    background: #10b981;
+    border-radius: 99px;
+    transition: width 0.4s ease;
+}
+
+.progressWarning {
+    background: #f59e0b;
+    border-radius: 99px;
+    transition: width 0.4s ease;
+}
+
+.progressExpired {
+    background: #ef4444;
+    border-radius: 99px;
+    transition: width 0.4s ease;
+}
+
+/* ── Skeletons ── */
+.skeletonIcon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 8px;
+}
+
+.skeletonTitle {
+    width: 90px;
+    height: 14px;
+}
+
+.skeletonStatBlock {
+    width: 48px;
+    height: 32px;
+}
+
+.skeletonProgressBar {
+    width: 100%;
+    height: 6px;
+    border-radius: 99px;
+    margin-top: 0.5rem;
+}

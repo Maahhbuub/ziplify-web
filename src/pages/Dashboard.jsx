@@ -4,6 +4,7 @@ import LinkCreator from '../components/dashboard/LinkCreator';
 import StatsGrid from '../components/dashboard/StatsGrid';
 import LinksTable from '../components/dashboard/LinksTable';
 import ClicksChart from '../components/dashboard/ClicksChart';
+import QuickInsights from '../components/dashboard/QuickInsights';
 import ConfirmModal from '../components/ui/ConfirmModal';
 import styles from './Dashboard.module.css';
 import api from '../api/api';
@@ -94,6 +95,8 @@ function Dashboard() {
                     <LinksTable links={links?.data || []} onDelete={handleDeleteClick} loading={isInitialLoading} />
                     <ClicksChart links={links?.data || []} loading={isInitialLoading} />
                 </div>
+
+                <QuickInsights links={links?.data || []} loading={isInitialLoading} />
 
                 <ConfirmModal
                     isOpen={Boolean(deleteId)}

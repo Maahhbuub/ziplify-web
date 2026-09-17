@@ -1,0 +1,103 @@
+.footer {
+    background: transparent;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+    padding: 0.75rem 0;
+    color: var(--subtext);
+    font-size: 0.78rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    color: var(--text);
+}
+
+.logoIcon {
+    width: 1.35rem;
+    height: 1.35rem;
+    background: #fff3f0;
+    color: var(--primary);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brandName {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--text);
+    letter-spacing: -0.2px;
+}
+
+.dot {
+    color: var(--border);
+    font-size: 0.65rem;
+    user-select: none;
+}
+
+.copyright {
+    color: var(--subtext);
+    font-size: 0.76rem;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+}
+
+.madeWithLove {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--subtext);
+    font-size: 0.76rem;
+}
+
+.heartIcon {
+    color: var(--primary);
+    animation: pulseHeart 2s infinite ease-in-out;
+}
+
+@keyframes pulseHeart {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.author {
+    font-weight: 600;
+    color: var(--text);
+}
+
+@media (max-width: 640px) {
+    .container {
+        justify-content: center;
+        text-align: center;
+        gap: 0.4rem;
+    }
+
+    .left, .right {
+        justify-content: center;
+    }
+}
