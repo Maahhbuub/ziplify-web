@@ -327,8 +327,23 @@
         padding: 0.6rem;
     }
 
+    .resultRow {
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: center;
+        align-items: center;
+        gap: 0.35rem 0.5rem;
+        text-align: center;
+    }
+
     .resultLink {
         max-width: 100%;
         word-break: break-all;
+    }
+
+    .copyBtn {
+        grid-column: 1 / -1;
+        justify-self: center;
+        margin-top: 0.25rem;
     }
 }
