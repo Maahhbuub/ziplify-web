@@ -97,12 +97,121 @@
 
 .searchInput::placeholder { color: #b0b3b8; }
 
-.toolbarRight { display: flex; align-items: center; gap: 0.5rem; }
+.toolbarRight {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.dropdownWrap {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.dropdownTrigger {
+    all: unset;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.45rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-alt);
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-family: inherit;
+    color: var(--text);
+    transition: border-color 0.2s ease, background 0.2s ease;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.dropdownTrigger:hover {
+    border-color: color-mix(in srgb, var(--primary) 50%, transparent);
+    background: color-mix(in srgb, var(--primary) 6%, white);
+}
+
+.dropdownIcon {
+    color: var(--subtext);
+    flex-shrink: 0;
+}
+
+.dropdownText {
+    color: var(--subtext);
+    font-weight: 500;
+}
+
+.dropdownActive {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.chevron {
+    color: var(--subtext);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.chevronOpen {
+    transform: rotate(180deg);
+}
+
+.menu {
+    position: absolute;
+    top: calc(100% + 0.4rem);
+    right: 0;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+    overflow: hidden;
+    z-index: 50;
+    min-width: 9.5rem;
+    animation: dropIn 0.15s ease;
+}
+
+@keyframes dropIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.option {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.55rem 0.9rem;
+    font-size: 0.82rem;
+    font-family: inherit;
+    color: var(--text);
+    cursor: pointer;
+    transition: background 0.12s ease;
+}
+
+.option:hover {
+    background: var(--bg-alt);
+}
+
+.optionActive {
+    color: var(--primary);
+    font-weight: 600;
+    background: color-mix(in srgb, var(--primary) 6%, white);
+}
 
 .resultCount {
     font-size: 0.8rem;
     color: var(--subtext);
     white-space: nowrap;
+    margin-left: 0.2rem;
 }
 
 /* ── Card + Table ── */
@@ -213,8 +322,67 @@
     font-size: 0.875rem;
 }
 
+/* ── Expired badge ── */
+.expiredBadge {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #ef4444;
+    background: #fef2f2;
+    border: 1px solid #fee2e2;
+    padding: 0.15rem 0.5rem;
+    border-radius: 6px;
+    white-space: nowrap;
+    display: inline-block;
+}
+
 /* ── Mobile ── */
 @media (max-width: 640px) {
     .table th, .table td { padding: 0.6rem 0.75rem; }
     .originalUrl { max-width: 10rem; }
+    .toolbarRight { width: 100%; justify-content: space-between; }
+    .select { flex: 1; }
+}
+
+/* ── Skeleton Placeholders ── */
+.skeletonTotalBadge {
+    width: 90px;
+    height: 26px;
+    border-radius: 99px;
+    align-self: center;
+}
+
+.skeletonRow td {
+    padding: 0.85rem 1.1rem;
+}
+
+.skeletonShort {
+    width: 90px;
+    height: 15px;
+}
+
+.skeletonOriginal {
+    width: 160px;
+    height: 15px;
+}
+
+.skeletonClicks {
+    width: 32px;
+    height: 15px;
+}
+
+.skeletonExpire {
+    width: 80px;
+    height: 15px;
+}
+
+.skeletonDate {
+    width: 75px;
+    height: 15px;
+}
+
+.skeletonActions {
+    width: 48px;
+    height: 26px;
+    margin-left: auto;
+    border-radius: 6px;
 }
