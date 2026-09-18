@@ -10,9 +10,6 @@ function Footer() {
             <div className={styles.container}>
                 <div className={styles.left}>
                     <Link to="/dashboard" className={styles.brand}>
-                        <div className={styles.logoIcon}>
-                            <Link2 size={13} />
-                        </div>
                         <span className={styles.brandName}>Ziplify</span>
                     </Link>
                     <span className={styles.dot}>•</span>

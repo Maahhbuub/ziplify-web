@@ -11,9 +11,6 @@
 :root {
   --primary: #e76f51;
   --hover: #e76f51ef;
-  --secondary: #1A1C1E;
-  --badge: #ecfdf5;
-  --badge-color: #10b981;
 
   --bg-main: #f9f9fa;
   --bg-alt: #f3f3f4;
@@ -119,4 +116,4 @@
   background-size: 400% 100%;
   animation: skeleton-shimmer 1.4s ease infinite;
   border-radius: 6px;
-}
+}

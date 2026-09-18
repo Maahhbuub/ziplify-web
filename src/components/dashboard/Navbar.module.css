@@ -24,8 +24,8 @@
     gap: 0.5rem;
     text-decoration: none;
     color: var(--text);
-    font-weight: 700;
-    font-size: 1.1rem;
+    font-weight: 800;
+    font-size: 1.4rem;
     flex-shrink: 0;
 }
 
@@ -212,9 +212,11 @@
     }
 
     .navLink {
+        flex-direction: column;
+        justify-content: center;
         padding: 0.35rem 0.55rem;
-        gap: 0.35rem;
-        font-size: 0.8rem;
+        gap: 0.15rem;
+        font-size: 0.75rem;
         white-space: nowrap;
     }
 
@@ -232,18 +234,16 @@
 }
 
 @media (max-width: 440px) {
-    .logoText {
-        display: none;
-    }
-
     .inner {
         gap: 0.35rem;
         padding: 0 0.5rem;
     }
 
     .navLink {
+        flex-direction: column;
+        justify-content: center;
         padding: 0.3rem 0.45rem;
-        gap: 0.25rem;
-        font-size: 0.75rem;
+        gap: 0.15rem;
+        font-size: 0.7rem;
     }
 }

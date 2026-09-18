@@ -49,7 +49,6 @@ function Navbar() {
             <div className={styles.inner}>
 
                 <Link to="/dashboard" className={styles.logo}>
-                    <div className={styles.logoIcon}><Link2 size={18} /></div>
                     <span className={styles.logoText}>Ziplify</span>
                 </Link>
 

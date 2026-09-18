@@ -33,7 +33,7 @@
 
 .tipIcon {
     background: #fff3f0;
-    color: #e76f51;
+    color: var(--primary);
 }
 
 .cardTitle {
@@ -46,7 +46,7 @@
 /* ── Pro Tip Widget ── */
 .tipCard {
     background: linear-gradient(135deg, #ffffff 0%, #fffbf9 100%);
-    border-color: color-mix(in srgb, #e76f51 20%, var(--border));
+    border-color: color-mix(in srgb, var(--primary) 20%, var(--border));
 }
 
 .tipBody {
@@ -73,7 +73,7 @@
     gap: 0.4rem;
     font-size: 0.78rem;
     font-weight: 600;
-    color: #e76f51;
+    color: var(--primary);
     text-decoration: none;
     transition: gap 0.15s ease;
     align-self: flex-start;
