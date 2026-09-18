@@ -1,7 +1,7 @@
 {
     "rewrites": [
         {
-            "source": "/([a-zA-Z0-9]{1,7})",
+            "source": "/([a-zA-Z0-9]{1,10})",
             "destination": "https://shortener-server.onrender.com/$1"
         },
         {
