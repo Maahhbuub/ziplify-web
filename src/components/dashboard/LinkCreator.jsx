@@ -59,10 +59,16 @@ function LinkCreator({ onAdd }) {
         if (!formdata.url.trim()) {
             toast.error("URL can not be empty");
             return;
-        };  
+        };
 
-        if (!(formdata.alias.trim().length >= 10 && formdata.alias.trim().length < 3)) {
+        const alias = formdata.alias.trim();
+        if (alias.length < 3 || alias.length > 10) {
             toast.error("Alias must be 3 to 10 characters");
+            return;
+        }
+
+        if (!/^[a-zA-Z0-9-]+$/.test(alias)) {
+            toast.error("Alias can only contain letters, numbers, and hyphens");
             return;
         }
 
