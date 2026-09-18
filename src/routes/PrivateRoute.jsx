@@ -7,7 +7,6 @@ const PrivateRoute = ({ children }) => {
 
     if (authLoading) return <AuthLoader />;
     if (!user) return <Navigate to="/auth/login" replace />;
-
     return children;
 };
 export default PrivateRoute;
