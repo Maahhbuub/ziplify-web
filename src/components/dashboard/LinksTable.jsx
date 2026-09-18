@@ -1,10 +1,10 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Link2, Copy, Check, Trash2, ExternalLink } from 'lucide-react';
+import { Link2, Copy, Check, Trash2, ExternalLink, Pencil } from 'lucide-react';
 import toast from 'react-hot-toast';
 import styles from './LinksTable.module.css';
 
-function LinksTable({ links = [], onDelete, loading = false }) {
+function LinksTable({ links = [], onDelete, onEdit, loading = false }) {
     const [copiedId, setCopiedId] = useState(null);
 
     const visibleLinks = useMemo(() => {
@@ -97,6 +97,13 @@ function LinksTable({ links = [], onDelete, loading = false }) {
                                                 title="Copy"
                                             >
                                                 {copiedId === link.id ? <Check size={14} /> : <Copy size={14} />}
+                                            </button>
+                                            <button
+                                                className={styles.actionBtn}
+                                                onClick={() => onEdit(link)}
+                                                title="Edit URL"
+                                            >
+                                                <Pencil size={14} />
                                             </button>
                                             <button
                                                 className={`${styles.actionBtn} ${styles.deleteBtn}`}

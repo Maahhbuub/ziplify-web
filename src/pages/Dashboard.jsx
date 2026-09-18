@@ -6,6 +6,7 @@ import LinksTable from '../components/dashboard/LinksTable';
 import ClicksChart from '../components/dashboard/ClicksChart';
 import QuickInsights from '../components/dashboard/QuickInsights';
 import ConfirmModal from '../components/ui/ConfirmModal';
+import EditLinkModal from '../components/ui/EditLinkModal';
 import styles from './Dashboard.module.css';
 import api from '../api/api';
 import toast from 'react-hot-toast';
@@ -16,6 +17,9 @@ function Dashboard() {
     const [loadingLinks, setLoadingLinks] = useState(true);
     const [deleteId, setDeleteId] = useState(null);
     const [isDeleting, setIsDeleting] = useState(false);
+    const [editLink, setEditLink] = useState(null);
+    const [editUrl, setEditUrl] = useState('');
+    const [isSaving, setIsSaving] = useState(false);
 
     const greeting = () => {
         const h = new Date().getHours();
@@ -44,6 +48,29 @@ function Dashboard() {
 
     const handleDeleteClick = (id) => {
         setDeleteId(id);
+    };
+
+    const handleEditClick = (link) => {
+        setEditLink(link);
+        setEditUrl(link.longUrl || '');
+    };
+
+    const handleEditSave = async () => {
+        if (!editUrl.trim()) return toast.error('URL cannot be empty');
+        setIsSaving(true);
+        try {
+            const res = await api.patch(`/dashboard/urls/${editLink.id}`, { longUrl: editUrl.trim() });
+            setLinks(prev => ({
+                ...prev,
+                data: (prev?.data || []).map(l => l.id === editLink.id ? { ...l, longUrl: res.data?.data?.longUrl || editUrl.trim() } : l)
+            }));
+            toast.success('Link updated!');
+            setEditLink(null);
+        } catch (err) {
+            toast.error(err.response?.data?.message || 'Failed to update link');
+        } finally {
+            setIsSaving(false);
+        }
     };
 
     const handleConfirmDelete = async () => {
@@ -92,7 +119,7 @@ function Dashboard() {
                 <StatsGrid urls={links?.data || []} loading={isInitialLoading} />
 
                 <div className={styles.mainGrid}>
-                    <LinksTable links={links?.data || []} onDelete={handleDeleteClick} loading={isInitialLoading} />
+                    <LinksTable links={links?.data || []} onDelete={handleDeleteClick} onEdit={handleEditClick} loading={isInitialLoading} />
                     <ClicksChart links={links?.data || []} loading={isInitialLoading} />
                 </div>
 
@@ -107,6 +134,15 @@ function Dashboard() {
                     message="Are you sure you want to delete this link? Anyone visiting this URL will no longer be redirected. This action cannot be undone."
                     itemDetails={targetLink}
                     confirmText="Yes, Delete"
+                />
+
+                <EditLinkModal
+                    link={editLink}
+                    url={editUrl}
+                    isSaving={isSaving}
+                    onChange={setEditUrl}
+                    onSave={handleEditSave}
+                    onClose={() => setEditLink(null)}
                 />
             </div>
         </div>

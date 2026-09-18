@@ -58,7 +58,7 @@
 .table thead tr { border-bottom: 1px solid var(--border); }
 
 .table th {
-    text-align: left;
+    text-align: center;
     padding: 0.65rem 1rem;
     font-size: 0.72rem;
     font-weight: 600;
@@ -69,9 +69,15 @@
 }
 
 .table td {
+    text-align: center;
     padding: 0.7rem 1rem;
     border-bottom: 1px solid var(--border);
     vertical-align: middle;
+}
+
+.table th:nth-child(2),
+.table td:nth-child(2) {
+    text-align: left;
 }
 
 .table tbody tr:last-child td { border-bottom: none; }
@@ -104,7 +110,7 @@
 
 .date { color: var(--subtext); font-size: 0.8rem; white-space: nowrap; }
 
-.actions { display: flex; gap: 0.4rem; justify-content: flex-end; }
+.actions { display: flex; gap: 0.4rem; justify-content: center; }
 
 .actionBtn {
     all: unset;

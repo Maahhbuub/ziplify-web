@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
-import { Copy, Check, Trash2, ExternalLink, Link2, Search, ArrowUpDown, Filter, ChevronDown } from 'lucide-react';
+import { Copy, Check, Trash2, ExternalLink, Link2, Search, ArrowUpDown, Filter, ChevronDown, Pencil, ChevronLeft, ChevronRight } from 'lucide-react';
+import EditLinkModal from '../components/ui/EditLinkModal';
 import LinkCreator from '../components/dashboard/LinkCreator';
 import ConfirmModal from '../components/ui/ConfirmModal';
 import api from '../api/api';
@@ -27,6 +28,11 @@ function MyLinks() {
     const [copiedId, setCopiedId] = useState(null);
     const [deleteId, setDeleteId] = useState(null);
     const [isDeleting, setIsDeleting] = useState(false);
+    const [editLink, setEditLink] = useState(null);
+    const [editUrl, setEditUrl] = useState('');
+    const [isSaving, setIsSaving] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const ITEMS_PER_PAGE = 10;
 
     const [statusDropOpen, setStatusDropOpen] = useState(false);
     const [sortDropOpen, setSortDropOpen] = useState(false);
@@ -73,6 +79,26 @@ function MyLinks() {
 
     const handleDeleteClick = (id) => {
         setDeleteId(id);
+    };
+
+    const handleEditClick = (link) => {
+        setEditLink(link);
+        setEditUrl(link.longUrl || '');
+    };
+
+    const handleEditSave = async () => {
+        if (!editUrl.trim()) return toast.error('URL cannot be empty');
+        setIsSaving(true);
+        try {
+            const res = await api.patch(`/dashboard/urls/${editLink.id}`, { longUrl: editUrl.trim() });
+            setLinks(prev => prev.map(l => l.id === editLink.id ? { ...l, longUrl: res.data?.data?.longUrl || editUrl.trim() } : l));
+            toast.success('Link updated!');
+            setEditLink(null);
+        } catch (err) {
+            toast.error(err.response?.data?.message || 'Failed to update link');
+        } finally {
+            setIsSaving(false);
+        }
     };
 
     const handleConfirmDelete = async () => {
@@ -143,6 +169,16 @@ function MyLinks() {
                 return new Date(b.createdAt) - new Date(a.createdAt);
             });
     }, [links, search, filterStatus, sortBy]);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [search, filterStatus, sortBy, links.length]);
+
+    const totalPages = Math.ceil(filteredLinks.length / ITEMS_PER_PAGE);
+    const paginatedLinks = filteredLinks.slice(
+        (currentPage - 1) * ITEMS_PER_PAGE,
+        currentPage * ITEMS_PER_PAGE
+    );
 
     const targetLink = links.find(l => l.id === deleteId);
 
@@ -288,7 +324,7 @@ function MyLinks() {
                                         </tr>
                                     ))
                                 ) : (
-                                    filteredLinks.map(link => {
+                                    paginatedLinks.map(link => {
                                         const expired = isLinkExpired(link.expiresAt);
 
                                         return (
@@ -341,6 +377,13 @@ function MyLinks() {
                                                             {copiedId === link.id ? <Check size={14} /> : <Copy size={14} />}
                                                         </button>
                                                         <button
+                                                            className={styles.actionBtn}
+                                                            onClick={() => handleEditClick(link)}
+                                                            title="Edit URL"
+                                                        >
+                                                            <Pencil size={14} />
+                                                        </button>
+                                                        <button
                                                             className={`${styles.actionBtn} ${styles.deleteBtn}`}
                                                             onClick={() => handleDeleteClick(link.id)}
                                                             title="Delete"
@@ -366,6 +409,64 @@ function MyLinks() {
                                 </p>
                             </div>
                         )}
+                        {!loading && totalPages > 1 && (() => {
+                            const pages = [];
+                            for (let i = 1; i <= totalPages; i++) {
+                                if (
+                                    i === 1 || i === totalPages ||
+                                    (i >= currentPage - 1 && i <= currentPage + 1)
+                                ) {
+                                    pages.push(i);
+                                } else if (
+                                    (i === currentPage - 2 && currentPage - 2 > 1) ||
+                                    (i === currentPage + 2 && currentPage + 2 < totalPages)
+                                ) {
+                                    pages.push('...');
+                                }
+                            }
+                            const uniquePages = pages.filter((p, i) => p !== pages[i - 1]);
+                            return (
+                                <div className={styles.pagination}>
+                                    <span className={styles.pageCount}>
+                                        {Math.min((currentPage - 1) * ITEMS_PER_PAGE + 1, filteredLinks.length)}–{Math.min(currentPage * ITEMS_PER_PAGE, filteredLinks.length)} of {filteredLinks.length}
+                                    </span>
+                                    <div className={styles.pageControls}>
+                                        <button
+                                            className={styles.pageNavBtn}
+                                            disabled={currentPage === 1}
+                                            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                                            aria-label="Previous page"
+                                        >
+                                            <ChevronLeft size={16} />
+                                        </button>
+                                        {uniquePages.map((p, i) =>
+                                            p === '...' ? (
+                                                <span key={`dots-${i}`} className={styles.pageDots}>…</span>
+                                            ) : (
+                                                <button
+                                                    key={p}
+                                                    className={`${styles.pageNumBtn} ${currentPage === p ? styles.pageNumActive : ''}`}
+                                                    onClick={() => setCurrentPage(p)}
+                                                    aria-label={`Page ${p}`}
+                                                    aria-current={currentPage === p ? 'page' : undefined}
+                                                >
+                                                    {p}
+                                                </button>
+                                            )
+                                        )}
+                                        <button
+                                            className={styles.pageNavBtn}
+                                            disabled={currentPage === totalPages}
+                                            onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                                            aria-label="Next page"
+                                        >
+                                            <ChevronRight size={16} />
+                                        </button>
+                                    </div>
+                                </div>
+                            );
+                        })()}
+
                     </div>
                 </div>
 
@@ -378,6 +479,15 @@ function MyLinks() {
                     message="Are you sure you want to delete this link? Anyone visiting this URL will no longer be redirected. This action cannot be undone."
                     itemDetails={targetLink}
                     confirmText="Yes, Delete"
+                />
+
+                <EditLinkModal
+                    link={editLink}
+                    url={editUrl}
+                    isSaving={isSaving}
+                    onChange={setEditUrl}
+                    onSave={handleEditSave}
+                    onClose={() => setEditLink(null)}
                 />
 
             </div>
