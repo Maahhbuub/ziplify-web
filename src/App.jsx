@@ -41,10 +41,10 @@ function App() {
       </Route>
 
       <Route element={<DashboardLayout />}>
-        <Route path="/dashboard" element={<PrivateRoute> <Dashboard /> </PrivateRoute>} />
-        <Route path="/dashboard/my-links" element={<PrivateRoute> <MyLinks /> </PrivateRoute>} />
-        <Route path="/dashboard/profile" element={<PrivateRoute> <Profile /> </PrivateRoute>} />
-        <Route path="/dashboard/analytics" element={<PrivateRoute> <Analytics /> </PrivateRoute>} />
+        <Route path="/my-dashboard" element={<PrivateRoute> <Dashboard /> </PrivateRoute>} />
+        <Route path="/my-dashboard/my-links" element={<PrivateRoute> <MyLinks /> </PrivateRoute>} />
+        <Route path="/my-dashboard/profile" element={<PrivateRoute> <Profile /> </PrivateRoute>} />
+        <Route path="/my-dashboard/analytics" element={<PrivateRoute> <Analytics /> </PrivateRoute>} />
       </Route>
 
       <Route path="/not-found" element={<NotFound />} />

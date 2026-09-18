@@ -9,7 +9,7 @@ function Footer() {
         <footer className={styles.footer}>
             <div className={styles.container}>
                 <div className={styles.left}>
-                    <Link to="/dashboard" className={styles.brand}>
+                    <Link to="/my-dashboard" className={styles.brand}>
                         <span className={styles.brandName}>Ziplify</span>
                     </Link>
                     <span className={styles.dot}>•</span>

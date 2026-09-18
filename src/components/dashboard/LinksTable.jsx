@@ -42,7 +42,7 @@ function LinksTable({ links = [], onDelete, onEdit, loading = false }) {
                         <span className={styles.badge}>{links.length} links</span>
                     )}
                 </div>
-                <Link to="/dashboard/my-links" className={styles.viewAll}>
+                <Link to="/my-dashboard/my-links" className={styles.viewAll}>
                     View all links &rarr;
                 </Link>
             </div>
