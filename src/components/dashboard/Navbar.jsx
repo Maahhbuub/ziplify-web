@@ -45,57 +45,73 @@ function Navbar() {
         : 'U';
 
     return (
-        <header className={styles.navbar}>
-            <div className={styles.inner}>
+        <>
+            <header className={styles.navbar}>
+                <div className={styles.inner}>
 
-                <Link to="/dashboard" className={styles.logo}>
-                    <span className={styles.logoText}>Ziplify</span>
-                </Link>
+                    <Link to="/dashboard" className={styles.logo}>
+                        <span className={styles.logoText}>Ziplify</span>
+                    </Link>
 
-                <nav className={styles.nav}>
-                    {NAV_LINKS.map(({ label, to, icon: Icon }) => (
-                        <Link
-                            key={to}
-                            to={to}
-                            className={`${styles.navLink} ${location.pathname === to ? styles.active : ''}`}
-                        >
-                            <Icon size={15} />
-                            <span>{label}</span>
-                        </Link>
-                    ))}
-                </nav>
-
-                <div className={styles.userArea} ref={dropdownRef}>
-                    <button
-                        className={styles.avatarBtn}
-                        onClick={() => setDropdownOpen(p => !p)}
-                        id="navbar-user-menu"
-                        aria-expanded={dropdownOpen}
-                    >
-                        <div className={styles.avatar}>{initials}</div>
-                        <span className={styles.userName}>{user?.name?.split(' ')[0]}</span>
-                        <ChevronDown size={14} className={`${styles.chevron} ${dropdownOpen ? styles.chevronOpen : ''}`} />
-                    </button>
-
-                    {dropdownOpen && (
-                        <div className={styles.dropdown}>
-                            <div className={styles.dropdownHeader}>
-                                <p className={styles.dropdownName}>{user?.name}</p>
-                                <p className={styles.dropdownEmail}>{user?.email}</p>
-                            </div>
-                            <div className={styles.dropdownDivider} />
-                            <Link to="/dashboard/profile" className={styles.dropdownItem} onClick={() => setDropdownOpen(false)}>
-                                <User size={14} /> Profile
+                    <nav className={`${styles.nav} ${styles.desktopNav}`}>
+                        {NAV_LINKS.map(({ label, to, icon: Icon }) => (
+                            <Link
+                                key={to}
+                                to={to}
+                                className={`${styles.navLink} ${location.pathname === to ? styles.active : ''}`}
+                            >
+                                <Icon size={15} />
+                                <span>{label}</span>
                             </Link>
-                            <button className={`${styles.dropdownItem} ${styles.logoutItem}`} onClick={handleLogout}>
-                                <LogOut size={14} /> Logout
-                            </button>
-                        </div>
-                    )}
-                </div>
+                        ))}
+                    </nav>
 
-            </div>
-        </header>
+                    <div className={styles.userArea} ref={dropdownRef}>
+                        <button
+                            className={styles.avatarBtn}
+                            onClick={() => setDropdownOpen(p => !p)}
+                            id="navbar-user-menu"
+                            aria-expanded={dropdownOpen}
+                        >
+                            <div className={styles.avatar}>{initials}</div>
+                            <span className={styles.userName}>{user?.name?.split(' ')[0]}</span>
+                            <ChevronDown size={14} className={`${styles.chevron} ${dropdownOpen ? styles.chevronOpen : ''}`} />
+                        </button>
+
+                        {dropdownOpen && (
+                            <div className={styles.dropdown}>
+                                <div className={styles.dropdownHeader}>
+                                    <p className={styles.dropdownName}>{user?.name}</p>
+                                    <p className={styles.dropdownEmail}>{user?.email}</p>
+                                </div>
+                                <div className={styles.dropdownDivider} />
+                                <Link to="/dashboard/profile" className={styles.dropdownItem} onClick={() => setDropdownOpen(false)}>
+                                    <User size={14} /> Profile
+                                </Link>
+                                <button className={`${styles.dropdownItem} ${styles.logoutItem}`} onClick={handleLogout}>
+                                    <LogOut size={14} /> Logout
+                                </button>
+                            </div>
+                        )}
+                    </div>
+
+                </div>
+            </header>
+
+            {/* Mobile Bottom Navigation */}
+            <nav className={`${styles.nav} ${styles.mobileNav}`}>
+                {NAV_LINKS.map(({ label, to, icon: Icon }) => (
+                    <Link
+                        key={to}
+                        to={to}
+                        className={`${styles.navLink} ${location.pathname === to ? styles.active : ''}`}
+                    >
+                        <Icon size={15} />
+                        <span>{label}</span>
+                    </Link>
+                ))}
+            </nav>
+        </>
     );
 }
 

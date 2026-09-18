@@ -1,4 +1,3 @@
-/* ── Page shell ── */
 .page {
     flex: 1;
     background: transparent;
@@ -14,7 +13,7 @@
 }
 
 @media (max-width: 640px) {
-    .container { padding: 1.25rem 1rem; gap: 1rem; }
+    .container { padding: 1.25rem 1rem 5rem 1rem; gap: 1rem; }
 }
 
 /* ── Page header ── */
@@ -40,7 +39,6 @@
     color: var(--subtext);
 }
 
-/* ── Main two-column grid ── */
 .mainGrid {
     display: grid;
     grid-template-columns: 1fr 320px;
