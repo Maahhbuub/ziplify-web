@@ -61,17 +61,6 @@ function LinkCreator({ onAdd }) {
             return;
         };
 
-        const alias = formdata.alias.trim();
-        if (alias.length < 3 || alias.length > 10) {
-            toast.error("Alias must be 3 to 10 characters");
-            return;
-        }
-
-        if (!/^[a-zA-Z0-9-]+$/.test(alias)) {
-            toast.error("Alias can only contain letters, numbers, and hyphens");
-            return;
-        }
-
         setLoading(true);
 
         try {
@@ -123,6 +112,7 @@ function LinkCreator({ onAdd }) {
                             onChange={handleData}
                             placeholder="alias (optional)"
                             className={styles.aliasInput}
+                            maxLength={10}
                         />
                     </div>
 
