@@ -59,7 +59,13 @@ function LinkCreator({ onAdd }) {
         if (!formdata.url.trim()) {
             toast.error("URL can not be empty");
             return;
-        };
+        };  
+
+        if (!(formdata.alias.trim().length >= 10 && formdata.alias.trim().length < 3)) {
+            toast.error("Alias must be 3 to 10 characters");
+            return;
+        }
+
         setLoading(true);
 
         try {
