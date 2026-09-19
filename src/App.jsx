@@ -29,7 +29,7 @@ function App() {
   return (
     <Routes>
       <Route element={<MainLayout />}>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<GuestRoute><Home /></GuestRoute>} />
       </Route>
 
       <Route element={<AuthLayout />}>
