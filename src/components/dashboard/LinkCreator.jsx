@@ -62,9 +62,11 @@ function LinkCreator({ onAdd }) {
         };
 
         const trimmedAlias = formdata.alias.trim();
-        if (!/^[a-zA-Z0-9]+$/.test(trimmedAlias)) {
-            toast.error("Alias must be letters and numbers");
-            return;
+        if (trimmedAlias) {
+            if (!/^[a-zA-Z0-9]+$/.test(trimmedAlias)) {
+                toast.error("Alias must be letters or numbers");
+                return;
+            }
         }
 
         setLoading(true);

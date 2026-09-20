@@ -93,13 +93,23 @@ function Dashboard() {
     };
 
     const targetLink = links?.data?.find(l => l.id === deleteId);
-
+    
     const handleAddLink = (newUrl) => {
         if (newUrl) {
-            setLinks(prev => ({
-                ...prev,
-                data: [newUrl, ...(prev?.data || [])]
-            }));
+            setLinks(prev => {
+                const prevData = prev?.data || [];
+                const exists = prevData.find(l => l.id === newUrl.id);
+                if (exists) {
+                    return {
+                        ...prev,
+                        data: prevData.map(l => l.id === newUrl.id ? newUrl : l)
+                    };
+                }
+                return {
+                    ...prev,
+                    data: [newUrl, ...prevData]
+                };
+            });
         } else {
             getLinks();
         }

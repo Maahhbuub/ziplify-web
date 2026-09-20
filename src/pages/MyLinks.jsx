@@ -71,7 +71,13 @@ function MyLinks() {
 
     const handleAdd = (newLink) => {
         if (newLink) {
-            setLinks(prev => [newLink, ...prev]);
+            setLinks(prev => {
+                const exists = prev.find(l => l.id === newLink.id);
+                if (exists) {
+                    return prev.map(l => l.id === newLink.id ? newLink : l);
+                }
+                return [newLink, ...prev];
+            });
         } else {
             getLinks();
         }
