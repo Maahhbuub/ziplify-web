@@ -1,0 +1,66 @@
+.card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.35rem 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 0.1rem;
+}
+
+.cardIcon {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: #fff3f0;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.cardTitle {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.divider {
+    height: 1px;
+    background: var(--border);
+    margin: 1rem 0;
+}
+
+.fieldRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 2.5rem;
+}
+
+.fieldLabel {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--subtext);
+    margin-bottom: 0.15rem;
+}
+
+.fieldValue {
+    font-size: 0.9rem;
+    color: var(--text);
+    font-weight: 500;
+}
+
+.fieldAction {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}

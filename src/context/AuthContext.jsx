@@ -42,8 +42,13 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
     };
 
+    const clearSession = () => {
+        setAccessToken("");
+        setUser(null);
+    };
+
     return (
-        <AuthContext.Provider value={{ user, setUser, authLoading, register, login, logout, checkAuth }}>
+        <AuthContext.Provider value={{ user, setUser, authLoading, register, login, logout, checkAuth, clearSession }}>
             {children}
         </AuthContext.Provider>
     );

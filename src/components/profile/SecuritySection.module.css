@@ -1,0 +1,125 @@
+.toggleRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 2.5rem;
+    cursor: pointer;
+}
+
+.fieldLabel {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--subtext);
+    margin-bottom: 0.15rem;
+}
+
+.fieldValue {
+    font-size: 0.9rem;
+    color: var(--text);
+    font-weight: 500;
+}
+
+.changeBtn {
+    all: unset;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--primary);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.15s ease;
+    flex-shrink: 0;
+}
+
+.changeBtn:hover { opacity: 0.75; }
+
+.chevron {
+    transition: transform 0.2s ease;
+}
+
+.chevronOpen {
+    transform: rotate(90deg);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-top: 1rem;
+    padding: 1.1rem;
+    background: var(--bg-alt);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--subtext);
+}
+
+.pwWrap {
+    position: relative;
+}
+
+.input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 0.5rem 2.5rem 0.5rem 0.85rem;
+    font-size: 0.875rem;
+    font-family: inherit;
+    color: var(--text);
+    background: white;
+    outline: none;
+    transition: all 0.4s ease;
+}
+
+.input:focus {
+    border-color: color-mix(in srgb, var(--primary) 50%, transparent);
+    box-shadow: 0 0 0 0.15rem color-mix(in srgb, var(--primary) 50%, transparent);
+}
+
+.eyeBtn {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--subtext);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    transition: color 0.15s;
+}
+
+.eyeBtn:hover { color: var(--text); }
+
+.btnPrimary {
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.25rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+    align-self: flex-start;
+}
+
+.btnPrimary:disabled { opacity: 0.5; cursor: not-allowed; }
+.btnPrimary:not(:disabled):hover { opacity: 0.85; }

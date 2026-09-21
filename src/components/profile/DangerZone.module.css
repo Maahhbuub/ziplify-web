@@ -1,0 +1,142 @@
+.card {
+    background: white;
+    border: 1px solid #fecaca;
+    border-radius: 14px;
+    padding: 1.35rem 1.5rem;
+    box-shadow: 0 2px 10px rgba(239, 68, 68, 0.06);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 1rem;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: #fff1f2;
+    color: #ef4444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #dc2626;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--subtext);
+    margin-bottom: 0.15rem;
+}
+
+.desc {
+    font-size: 0.83rem;
+    color: var(--subtext);
+    margin-top: 0.15rem;
+    max-width: 42ch;
+}
+
+.confirm {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.pwWrap {
+    position: relative;
+    max-width: 360px;
+    width: 100%;
+}
+
+.input {
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    padding: 0.5rem 2.5rem 0.5rem 0.85rem;
+    font-size: 0.875rem;
+    font-family: inherit;
+    color: var(--text);
+    background: white;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.eyeBtn {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--subtext);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    transition: color 0.15s;
+}
+
+.eyeBtn:hover { color: #ef4444; }
+
+.actions {
+    display: flex;
+    gap: 0.65rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.btnDanger {
+    background: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.55rem 1.1rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.15s ease;
+    flex-shrink: 0;
+}
+
+.btnDanger:disabled { opacity: 0.45; cursor: not-allowed; }
+.btnDanger:not(:disabled):hover { opacity: 0.85; }
+
+.btnCancel {
+    background: transparent;
+    color: var(--subtext);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.52rem 1rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.btnCancel:hover { background: var(--bg-alt); }
