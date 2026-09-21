@@ -42,9 +42,9 @@ function App() {
 
       <Route element={<DashboardLayout />}>
         <Route path="/my-dashboard" element={<PrivateRoute> <Dashboard /> </PrivateRoute>} />
-        <Route path="/my-dashboard/my-links" element={<PrivateRoute> <MyLinks /> </PrivateRoute>} />
-        <Route path="/my-dashboard/profile" element={<PrivateRoute> <Profile /> </PrivateRoute>} />
-        <Route path="/my-dashboard/analytics" element={<PrivateRoute> <Analytics /> </PrivateRoute>} />
+        <Route path="/my-links" element={<PrivateRoute> <MyLinks /> </PrivateRoute>} />
+        <Route path="/my-profile" element={<PrivateRoute> <Profile /> </PrivateRoute>} />
+        <Route path="/my-analytics" element={<PrivateRoute> <Analytics /> </PrivateRoute>} />
       </Route>
 
       <Route path="/not-found" element={<NotFound />} />

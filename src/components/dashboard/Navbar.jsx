@@ -7,8 +7,8 @@ import toast from 'react-hot-toast';
 
 const NAV_LINKS = [
     { label: 'Dashboard', to: '/my-dashboard', icon: LayoutDashboard },
-    { label: 'My Links', to: '/my-dashboard/my-links', icon: LinkIcon },
-    // { label: 'Analytics', to: '/my-dashboard/analytics', icon: BarChart2 },
+    { label: 'My Links', to: '/my-links', icon: LinkIcon },
+    // { label: 'Analytics', to: '/my-analytics', icon: BarChart2 },
     // { label: 'Settings', to: '/my-dashboard/settings', icon: Settings },
 ];
 
@@ -85,7 +85,7 @@ function Navbar() {
                                     <p className={styles.dropdownEmail}>{user?.email}</p>
                                 </div>
                                 <div className={styles.dropdownDivider} />
-                                <Link to="/my-dashboard/profile" className={styles.dropdownItem} onClick={() => setDropdownOpen(false)}>
+                                <Link to="/my-profile" className={styles.dropdownItem} onClick={() => setDropdownOpen(false)}>
                                     <User size={14} /> Profile
                                 </Link>
                                 <button className={`${styles.dropdownItem} ${styles.logoutItem}`} onClick={handleLogout}>
