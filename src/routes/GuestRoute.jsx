@@ -6,7 +6,7 @@ const GuestRoute = ({ children }) => {
     const { user, authLoading } = useAuth();
 
     if (authLoading) return <AuthLoader />;
-    if (user) return <Navigate to="/my-dashboard" replace />;
+    if (user) return <Navigate to="/app/dashboard" replace />;
     return children;
 };
 export default GuestRoute;

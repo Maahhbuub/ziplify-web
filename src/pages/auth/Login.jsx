@@ -44,7 +44,7 @@ function Login() {
             await login(formData);
             toast.success("Login Successful");
             setFormdata({ email: "", password: "" });
-            navigate('/my-dashboard');
+            navigate('/app/dashboard');
         } catch (error) {
             const code = error.response?.data?.code;
 

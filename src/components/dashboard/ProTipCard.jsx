@@ -29,7 +29,7 @@ function ProTipCard({ loading = false }) {
                 <p className={styles.tipText}>
                     Custom aliases make your short links <strong>34% more memorable</strong> and build trust with your audience.
                 </p>
-                <Link to="/my-dashboard/my-links" className={styles.tipAction}>
+                <Link to="/app/links" className={styles.tipAction}>
                     <span>Explore My Links</span>
                     <ArrowRight size={13} />
                 </Link>

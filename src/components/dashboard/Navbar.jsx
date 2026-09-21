@@ -6,9 +6,9 @@ import styles from './Navbar.module.css';
 import toast from 'react-hot-toast';
 
 const NAV_LINKS = [
-    { label: 'Dashboard', to: '/my-dashboard', icon: LayoutDashboard },
-    { label: 'My Links', to: '/my-links', icon: LinkIcon },
-    // { label: 'Analytics', to: '/my-analytics', icon: BarChart2 },
+    { label: 'Dashboard', to: '/app/dashboard', icon: LayoutDashboard },
+    { label: 'My Links', to: '/app/links', icon: LinkIcon },
+    // { label: 'Analytics', to: '/app/analytics', icon: BarChart2 },
     // { label: 'Settings', to: '/my-dashboard/settings', icon: Settings },
 ];
 
@@ -49,7 +49,7 @@ function Navbar() {
             <header className={styles.navbar}>
                 <div className={styles.inner}>
 
-                    <Link to="/my-dashboard" className={styles.logo}>
+                    <Link to="/app/dashboard" className={styles.logo}>
                         <span className={styles.logoText}>Ziplify</span>
                     </Link>
 
@@ -85,7 +85,7 @@ function Navbar() {
                                     <p className={styles.dropdownEmail}>{user?.email}</p>
                                 </div>
                                 <div className={styles.dropdownDivider} />
-                                <Link to="/my-profile" className={styles.dropdownItem} onClick={() => setDropdownOpen(false)}>
+                                <Link to="/app/profile" className={styles.dropdownItem} onClick={() => setDropdownOpen(false)}>
                                     <User size={14} /> Profile
                                 </Link>
                                 <button className={`${styles.dropdownItem} ${styles.logoutItem}`} onClick={handleLogout}>

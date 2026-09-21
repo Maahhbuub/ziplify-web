@@ -4,9 +4,9 @@ import { SectionCard, Divider } from './SectionCard';
 import styles from './QuickLinks.module.css';
 
 const QUICK_LINKS = [
-    { label: 'Dashboard', desc: 'Overview & stats',  to: '/my-dashboard',              icon: LayoutDashboard },
-    { label: 'My Links',  desc: 'Manage your URLs',  to: '/my-links',     icon: Link2           },
-    // { label: 'Analytics', desc: 'Track performance', to: '/my-analytics',    icon: BarChart2       },
+    { label: 'Dashboard', desc: 'Overview & stats',  to: '/app/dashboard', icon: LayoutDashboard },
+    { label: 'My Links',  desc: 'Manage your URLs',  to: '/app/links',     icon: Link2           },
+    // { label: 'Analytics', desc: 'Track performance', to: '/app/analytics',    icon: BarChart2       },
 ];
 
 function QuickLinks() {

@@ -41,10 +41,10 @@ function App() {
       </Route>
 
       <Route element={<PrivateRoute><DashboardLayout /></PrivateRoute>}>
-        <Route path="/my-dashboard" element={<Dashboard />} />
-        <Route path="/my-links" element={<MyLinks />} />
-        <Route path="/my-profile" element={<Profile />} />
-        <Route path="/my-analytics" element={<Analytics />} />
+        <Route path="/app/dashboard" element={<Dashboard />} />
+        <Route path="/app/links" element={<MyLinks />} />
+        <Route path="/app/profile" element={<Profile />} />
+        <Route path="/app/analytics" element={<Analytics />} />
       </Route>
 
       <Route path="/not-found" element={<NotFound />} />
