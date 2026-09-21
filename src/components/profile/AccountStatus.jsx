@@ -3,9 +3,9 @@ import { SectionCard, Divider } from './SectionCard';
 import styles from './AccountStatus.module.css';
 
 const STATUS_ITEMS = [
-    { label: 'Account type', value: 'Free'   },
-    { label: 'Status',       value: 'Active', highlight: true },
-    { label: 'Links created', value: '—'     },
+    { label: 'Account type', value: 'Free' },
+    { label: 'Status', value: 'Active', highlight: true },
+    { label: 'Short links', value: 'Unlimited' },
 ];
 
 function AccountStatus() {

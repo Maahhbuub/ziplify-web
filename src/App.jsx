@@ -33,18 +33,18 @@ function App() {
       </Route>
 
       <Route element={<AuthLayout />}>
-        <Route path="/auth/login" element={<GuestRoute> <Login /> </GuestRoute>} />
-        <Route path="/auth/signup" element={<GuestRoute> <Signup /> </GuestRoute>} />
-        <Route path="/auth/forgot" element={<GuestRoute> <Forget /> </GuestRoute>} />
-        <Route path='/auth/verify-email' element={<VerifyEmail />} ></Route>
-        <Route path='/auth/reset-password' element={<ResetPassword />} ></Route>
+        <Route path="/auth/login" element={<GuestRoute><Login /></GuestRoute>} />
+        <Route path="/auth/signup" element={<GuestRoute><Signup /></GuestRoute>} />
+        <Route path="/auth/forgot" element={<GuestRoute><Forget /></GuestRoute>} />
+        <Route path="/auth/verify-email" element={<VerifyEmail />} />
+        <Route path="/auth/reset-password" element={<ResetPassword />} />
       </Route>
 
-      <Route element={<DashboardLayout />}>
-        <Route path="/my-dashboard" element={<PrivateRoute> <Dashboard /> </PrivateRoute>} />
-        <Route path="/my-links" element={<PrivateRoute> <MyLinks /> </PrivateRoute>} />
-        <Route path="/my-profile" element={<PrivateRoute> <Profile /> </PrivateRoute>} />
-        <Route path="/my-analytics" element={<PrivateRoute> <Analytics /> </PrivateRoute>} />
+      <Route element={<PrivateRoute><DashboardLayout /></PrivateRoute>}>
+        <Route path="/my-dashboard" element={<Dashboard />} />
+        <Route path="/my-links" element={<MyLinks />} />
+        <Route path="/my-profile" element={<Profile />} />
+        <Route path="/my-analytics" element={<Analytics />} />
       </Route>
 
       <Route path="/not-found" element={<NotFound />} />
